@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.velaphi.untamed.features.main.MainViewModel;
-import com.velaphi.untamed.util.ViewModelFactory;
+import com.velaphi.untamed.utils.ViewModelFactory;
 
 import dagger.Binds;
 import dagger.Module;

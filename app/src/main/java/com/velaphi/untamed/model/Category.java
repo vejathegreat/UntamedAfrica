@@ -1,5 +1,8 @@
 package com.velaphi.untamed.model;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Category extends Model {
 
     public static final String FIELD_NAME = "name";

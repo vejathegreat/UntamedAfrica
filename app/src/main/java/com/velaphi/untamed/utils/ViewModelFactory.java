@@ -1,5 +1,4 @@
-package com.velaphi.untamed.util;
-
+package com.velaphi.untamed.utils;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
@@ -43,4 +42,3 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         }
     }
 }
-

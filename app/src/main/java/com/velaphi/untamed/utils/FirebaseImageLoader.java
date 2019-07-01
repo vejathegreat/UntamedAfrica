@@ -1,5 +1,4 @@
-package com.velaphi.untamed.util;
-
+package com.velaphi.untamed.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

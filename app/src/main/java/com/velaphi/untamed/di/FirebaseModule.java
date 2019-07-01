@@ -22,7 +22,7 @@ class FirebaseModule {
     @Singleton
     @Provides
     @Named("categories")
-    CollectionReference providesRestaurants() {
+    CollectionReference providesCategories() {
         FirebaseFirestore.setLoggingEnabled(true);
         return FirebaseFirestore.getInstance().collection("categories");
     }
