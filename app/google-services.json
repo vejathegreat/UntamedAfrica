@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "132168303860",
+    "firebase_url": "https://wild-beauty.firebaseio.com",
+    "project_id": "wild-beauty",
+    "storage_bucket": "wild-beauty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132168303860:android:22655d388fd512ab",
+        "android_client_info": {
+          "package_name": "com.velaphi.untamed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132168303860-il6r09632pvep2qfm88emq2vqn1lh3hu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.velaphi.untamed",
+            "certificate_hash": "8a4af76b741e00dd97608ecab3425bb9e3c67027"
+          }
+        },
+        {
+          "client_id": "132168303860-q59ust0vhb59cimn25mpi8hp8ptrh12v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6G6RszBUMWHWBY-7axd7t99flrIuCWb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132168303860-q59ust0vhb59cimn25mpi8hp8ptrh12v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
