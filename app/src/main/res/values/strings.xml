@@ -12,4 +12,9 @@
     <string name="menu_announcement">Announcements</string>
     <string name="menu_about">About Us</string>
     <string name="menu_contributors">Contributors</string>
+    <string name="categories_screen_title">Categories</string>
+    <string name="refresh">Refresh</string>
+    <string name="try_again">Try Again</string>
+    <string name="something_went_wrong_try_again_later_or_refresh">Something went wrong, try again later or refresh.</string>
+    <string name="no_network_connection_please_check_connection">No network connection, Please check connection.</string>
 </resources>
