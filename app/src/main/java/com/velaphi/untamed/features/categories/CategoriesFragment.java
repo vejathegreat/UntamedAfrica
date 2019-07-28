@@ -66,7 +66,7 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void setupRecyclerview(View view) {
-        RecyclerView.LayoutManager layoutManager = null;
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         int orientation = getActivity().getResources().getConfiguration().orientation;
         RecyclerView categoriesRecyclerView = view.findViewById(R.id.recyclerview_categories);
         categoriesAdapter = new CategoriesAdapter(getContext());
