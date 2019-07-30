@@ -1,8 +1,10 @@
 package com.velaphi.untamed.features.animalList;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.injection.UntamedFactory;
+
+import java.util.Objects;
 
 import butterknife.ButterKnife;
 
@@ -49,19 +53,23 @@ public class AnimalListActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         dataErrorStateLinearLayout = findViewById(R.id.data_error_state_layout);
         networkErrorStateLinearLayout = findViewById(R.id.network_error_state_layout);
+        Button refreshButton = findViewById(R.id.refresh_button);
+        refreshButton.setOnClickListener(v -> startActivity(new Intent(this, AnimalListActivity.class)));
     }
 
     private void getBundles() {
         Bundle extras = getIntent().getExtras();
-        categoryName = extras.getString(EXTRA_CATEGORY_NAME);
-        level = extras.getInt(EXTRA_CATEGORY_LEVEL);
+        if (extras != null) {
+            categoryName = extras.getString(EXTRA_CATEGORY_NAME);
+            level = extras.getInt(EXTRA_CATEGORY_LEVEL);
+        }
     }
 
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(categoryName);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 

@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.animalList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,12 @@ public class AnimalListAdapter extends RecyclerView.Adapter<AnimalListAdapter.Vi
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImageView);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent animalDetailsIntent = new Intent(context, AnimalDetailsActivity.class);
+            animalDetailsIntent.putExtra(AnimalDetailsActivity.EXTRA_ANIMAL_DETAILS, animalDetailsModel);
+            context.startActivity(animalDetailsIntent);
+        });
     }
 
     void setItems(List<AnimalDetailsModel> animalDetailsModelList) {
