@@ -15,7 +15,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
-import com.velaphi.untamed.features.animalList.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.animalDetails.AnimalDetailsActivity;
+import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.utils.Util;
 

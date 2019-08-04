@@ -1,4 +1,4 @@
-package com.velaphi.untamed.features.animalList.models;
+package com.velaphi.untamed.features.animalDetails.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

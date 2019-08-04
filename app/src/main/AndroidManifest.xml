@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".features.animalList.AnimalDetailsActivity"
+            android:name=".features.animalDetails.AnimalDetailsActivity"
             android:label="@string/title_activity_animal_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".features.animalList.AnimalListActivity" />

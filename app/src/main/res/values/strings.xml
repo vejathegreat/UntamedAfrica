@@ -21,13 +21,21 @@
     <string name="scientific_names">Scientific Names:</string>
     <string name="size">Size:</string>
     <string name="life_span">Life Span:</string>
-    <string name="habitat">Habitat: </string>
+    <string name="habitat">Where do they live? </string>
     <string name="diet">Diet:</string>
     <string name="gestation">Gestation:</string>
     <string name="weight">Weight:</string>
-    <string name="predators">Predators:</string>
+    <string name="predators">Predators</string>
+    <string name="locations">Countries where you can find Rhinos in their natural habitat</string>
+    <string name="facts">Facts</string>
+    <string name="gallery">Gallery</string>
+    <string name="other">Other</string>
     <string name="images">Image Gallery</string>
     <string name="read_more">READ MORE</string>
     <string name="view_all">View All</string>
     <string name="read_less">SEE LESS</string>
+    <string name="quick_facts">Quick Facts</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="basic_iinformation">● Black: Diceros bicornis \r\n ● White: Ceratotherium simum</string>
+
 </resources>

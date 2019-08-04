@@ -3,7 +3,7 @@ package com.velaphi.untamed.features.animalList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.velaphi.untamed.features.animalList.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.UntamedAfricaComponent;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 

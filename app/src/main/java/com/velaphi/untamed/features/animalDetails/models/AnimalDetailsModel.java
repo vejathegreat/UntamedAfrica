@@ -1,4 +1,4 @@
-package com.velaphi.untamed.features.animalList.models;
+package com.velaphi.untamed.features.animalDetails.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,6 +9,8 @@ import java.util.List;
 
 @IgnoreExtraProperties
 public class AnimalDetailsModel implements Parcelable {
+
+    private Description description;
     public static final Creator<AnimalDetailsModel> CREATOR = new Creator<AnimalDetailsModel>() {
         @Override
         public AnimalDetailsModel createFromParcel(Parcel in) {
@@ -20,95 +22,47 @@ public class AnimalDetailsModel implements Parcelable {
             return new AnimalDetailsModel[size];
         }
     };
-    private Description description;
-    private String diet;
-    private List<Fact> facts;
-    private String gestation;
     private Habitat habitat;
     private String image;
     private List<String> imageList;
+    private List<Info> basicInfo;
+    private List<String> located;
     private String key;
     private int level;
-    private String lifeSpan;
     private String name;
     private List<Challenge> challenges;
     private List<String> predators;
     private List<String> scientificNames;
-    private String size;
     private List<String> videoList;
     private List<String> weight;
-
+    private String quotable;
+    private List<Fact> facts;
 
     public AnimalDetailsModel() {
-    }
-
-    private String quotable;
-
-
-    public AnimalDetailsModel(List<Challenge> challenges, Description description, String diet, List<Fact> facts, String gestation, Habitat habitat, String image, List<String> imageList, String key, int level, String lifeSpan, String name, String quotable, List<String> predators, List<String> scientificNames, String size, List<String> videoList, List<String> weight) {
-        this.challenges = challenges;
-        this.description = description;
-        this.diet = diet;
-        this.facts = facts;
-        this.gestation = gestation;
-        this.habitat = habitat;
-        this.image = image;
-        this.imageList = imageList;
-        this.key = key;
-        this.level = level;
-        this.lifeSpan = lifeSpan;
-        this.name = name;
-        this.quotable = quotable;
-        this.predators = predators;
-        this.scientificNames = scientificNames;
-        this.size = size;
-        this.videoList = videoList;
-        this.weight = weight;
-    }
-
-    protected AnimalDetailsModel(Parcel in) {
-        challenges = in.createTypedArrayList(Challenge.CREATOR);
-        description = in.readParcelable(Description.class.getClassLoader());
-        diet = in.readString();
-        facts = in.createTypedArrayList(Fact.CREATOR);
-        gestation = in.readString();
-        habitat = in.readParcelable(Habitat.class.getClassLoader());
-        image = in.readString();
-        imageList = in.createStringArrayList();
-        key = in.readString();
-        level = in.readInt();
-        lifeSpan = in.readString();
-        name = in.readString();
-        quotable = in.readString();
-        predators = in.createStringArrayList();
-        scientificNames = in.createStringArrayList();
-        size = in.readString();
-        videoList = in.createStringArrayList();
-        weight = in.createStringArrayList();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Challenge> getChallenges() {
-        return challenges;
     }
 
     public Description getDescription() {
         return description;
     }
 
-    public String getDiet() {
-        return diet;
-    }
 
-    public List<Fact> getFacts() {
-        return facts;
-    }
-
-    public String getGestation() {
-        return gestation;
+    public AnimalDetailsModel(Description description, List<Info> basicInfo, Habitat habitat, String image, List<String> imageList, List<String> located, List<Fact> facts, String key, int level, String name, List<Challenge> challenges, List<String> predators, List<String> scientificNames, List<String> videoList, List<String> weight, String quotable) {
+        this.description = description;
+        this.basicInfo = basicInfo;
+        this.habitat = habitat;
+        this.image = image;
+        this.imageList = imageList;
+        this.located = located;
+        this.facts = facts;
+        this.key = key;
+        this.level = level;
+        this.name = name;
+        this.challenges = challenges;
+        this.predators = predators;
+        this.scientificNames = scientificNames;
+        this.videoList = videoList;
+        this.weight = weight;
+        this.quotable = quotable;
     }
 
     public Habitat getHabitat() {
@@ -123,6 +77,29 @@ public class AnimalDetailsModel implements Parcelable {
         return imageList;
     }
 
+    protected AnimalDetailsModel(Parcel in) {
+        description = in.readParcelable(Description.class.getClassLoader());
+        basicInfo = in.createTypedArrayList(Info.CREATOR);
+        habitat = in.readParcelable(Habitat.class.getClassLoader());
+        image = in.readString();
+        imageList = in.createStringArrayList();
+        located = in.createStringArrayList();
+        facts = in.createTypedArrayList(Fact.CREATOR);
+        key = in.readString();
+        level = in.readInt();
+        name = in.readString();
+        challenges = in.createTypedArrayList(Challenge.CREATOR);
+        predators = in.createStringArrayList();
+        scientificNames = in.createStringArrayList();
+        videoList = in.createStringArrayList();
+        weight = in.createStringArrayList();
+        quotable = in.readString();
+    }
+
+    public static Creator<AnimalDetailsModel> getCREATOR() {
+        return CREATOR;
+    }
+
     public String getKey() {
         return key;
     }
@@ -131,8 +108,12 @@ public class AnimalDetailsModel implements Parcelable {
         return level;
     }
 
-    public String getLifeSpan() {
-        return lifeSpan;
+    public List<Info> getBasicInfo() {
+        return basicInfo;
+    }
+
+    public List<String> getLocated() {
+        return located;
     }
 
     public List<String> getPredators() {
@@ -141,10 +122,6 @@ public class AnimalDetailsModel implements Parcelable {
 
     public List<String> getScientificNames() {
         return scientificNames;
-    }
-
-    public String getSize() {
-        return size;
     }
 
     public List<String> getVideoList() {
@@ -159,6 +136,18 @@ public class AnimalDetailsModel implements Parcelable {
         return quotable;
     }
 
+    public List<Fact> getFacts() {
+        return facts;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Challenge> getChallenges() {
+        return challenges;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -166,23 +155,21 @@ public class AnimalDetailsModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(challenges);
         dest.writeParcelable(description, flags);
-        dest.writeString(diet);
-        dest.writeTypedList(facts);
-        dest.writeString(gestation);
+        dest.writeTypedList(basicInfo);
         dest.writeParcelable(habitat, flags);
         dest.writeString(image);
         dest.writeStringList(imageList);
+        dest.writeStringList(located);
+        dest.writeTypedList(facts);
         dest.writeString(key);
         dest.writeInt(level);
-        dest.writeString(lifeSpan);
         dest.writeString(name);
-        dest.writeString(quotable);
+        dest.writeTypedList(challenges);
         dest.writeStringList(predators);
         dest.writeStringList(scientificNames);
-        dest.writeString(size);
         dest.writeStringList(videoList);
         dest.writeStringList(weight);
+        dest.writeString(quotable);
     }
 }

@@ -1,7 +1,6 @@
-package com.velaphi.untamed.features.animalList;
+package com.velaphi.untamed.features.animalDetails;
 
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,16 +9,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
-import com.velaphi.untamed.features.animalList.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.utils.Util;
 
@@ -31,6 +32,10 @@ public class AnimalDetailsActivity extends AppCompatActivity {
     boolean isExpanded = false;
     private AnimalDetailsModel animalDetailsModel;
     private LinearLayout habitatLinearLayout;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    int shortAnimationDuration;
+    private Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +43,62 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal_details);
         getBundles();
         setupToolbar();
-        populateView();
-        setPredators();
+        setupTabs();
         setAnimalDetails();
 
         FloatingActionButton favourite = findViewById(R.id.favorite);
         favourite.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
     }
+
+    private void setupTabs() {
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        fragment = new FactsFragment();
+        replaceFragment();
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        fragment = new FactsFragment();
+                        break;
+
+                    case 1:
+                        fragment = new GalleryFragment();
+                        break;
+
+                    case 2:
+                        fragment = new OtherFragment();
+                        break;
+                }
+
+                replaceFragment();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void replaceFragment() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(EXTRA_ANIMAL_DETAILS, animalDetailsModel);
+        fragment.setArguments(bundle);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.tab_container, fragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
+    }
+
 
     private void setAnimalDetails() {
         habitatLinearLayout = findViewById(R.id.habitat_layout);
@@ -56,7 +109,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         TextView habitatDetailsTextview = findViewById(R.id.details_habitat_textView);
 
         StringBuilder habitat = new StringBuilder();
-        habitat.append(getString(R.string.habitat)).append(" ").append(animalDetailsModel.getHabitat().getSummary());
+        habitat.append(getString(R.string.habitat));
         habitatDetailsTextview.setText(animalDetailsModel.getHabitat().getDescription());
         habitatHeadertextview.setText(habitat);
 
@@ -64,6 +117,9 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         final int MAX_LINES = 50;
         final int MIN_LINES = 4;
+        
+        shortAnimationDuration = getResources().getInteger(
+                android.R.integer.config_mediumAnimTime);
 
         descriptionHeaderTextview.setText(animalDetailsModel.getDescription().getHeading());
         descriptionDetailsTextview.setText(animalDetailsModel.getDescription().getDetails());
@@ -78,66 +134,16 @@ public class AnimalDetailsActivity extends AppCompatActivity {
                 isExpanded = true;
                 descriptionDetailsTextview.setMaxLines(MAX_LINES);
                 habitatLinearLayout.setVisibility(View.VISIBLE);
+                habitatLinearLayout.setAlpha(0f);
+                habitatLinearLayout.setVisibility(View.VISIBLE);
+
+                habitatLinearLayout.animate()
+                        .alpha(1f)
+                        .setDuration(shortAnimationDuration)
+                        .setListener(null);
                 readMoreButton.setText(R.string.read_less);
             }
         });
-
-    }
-
-    private void setPredators() {
-        final ChipGroup chipGroup = findViewById(R.id.predators_group);
-        for (String predator : animalDetailsModel.getPredators()) {
-            final Chip chip = new Chip(this);
-            int paddingDp = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 10,
-                    getResources().getDisplayMetrics());
-
-            chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
-            chip.setText(predator);
-            chipGroup.addView(chip);
-        }
-    }
-
-    private void populateView() {
-        TextView scientificNames = findViewById(R.id.scientific_names_textView);
-        String circle = "\u25CF";
-        StringBuilder names = new StringBuilder();
-
-        for (String name : animalDetailsModel.getScientificNames()) {
-            names.append(circle).append(" ")
-                    .append(name).append("\t\t");
-        }
-        scientificNames.setText(names);
-
-
-        StringBuilder weight = new StringBuilder();
-        TextView weightTextView = findViewById(R.id.weight_textView);
-        for (String weight_index : animalDetailsModel.getWeight()) {
-            weight.append(circle).append(" ")
-                    .append(weight_index).append("\n");
-        }
-        weightTextView.setText(weight);
-
-
-        StringBuilder size = new StringBuilder();
-        TextView sizeTextView = findViewById(R.id.size_textView);
-        size.append(circle).append(" ").append(animalDetailsModel.getSize());
-        sizeTextView.setText(size);
-
-        StringBuilder lifeSpan = new StringBuilder();
-        TextView lifespanTextView = findViewById(R.id.lifespan_textView);
-        lifeSpan.append(circle).append(" ").append(animalDetailsModel.getLifeSpan());
-        lifespanTextView.setText(lifeSpan);
-
-        StringBuilder diet = new StringBuilder();
-        TextView dietTextView = findViewById(R.id.diet_textView);
-        diet.append(circle).append(" ").append(animalDetailsModel.getDiet());
-        dietTextView.setText(diet);
-
-        StringBuilder gestation = new StringBuilder();
-        TextView gestationTextView = findViewById(R.id.gestation_textView);
-        gestation.append(circle).append(" ").append(animalDetailsModel.getGestation());
-        gestationTextView.setText(gestation);
 
     }
 
@@ -178,6 +184,4 @@ public class AnimalDetailsActivity extends AppCompatActivity {
             animalDetailsModel = extras.getParcelable(EXTRA_ANIMAL_DETAILS);
         }
     }
-
-
 }
