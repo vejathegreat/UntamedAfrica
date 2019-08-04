@@ -41,6 +41,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_details);
+
         getBundles();
         setupToolbar();
         setupTabs();
@@ -49,6 +50,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         FloatingActionButton favourite = findViewById(R.id.favorite);
         favourite.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
+
     }
 
     private void setupTabs() {
@@ -117,7 +119,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         final int MAX_LINES = 50;
         final int MIN_LINES = 4;
-        
+
         shortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_mediumAnimTime);
 

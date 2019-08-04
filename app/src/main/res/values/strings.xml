@@ -30,12 +30,11 @@
     <string name="facts">Facts</string>
     <string name="gallery">Gallery</string>
     <string name="other">Other</string>
-    <string name="images">Image Gallery</string>
+    <string name="images">Images</string>
+    <string name="videos">Videos</string>
     <string name="read_more">READ MORE</string>
     <string name="view_all">View All</string>
     <string name="read_less">SEE LESS</string>
     <string name="quick_facts">Quick Facts</string>
     <string name="basic_information">Basic Information</string>
-    <string name="basic_iinformation">● Black: Diceros bicornis \r\n ● White: Ceratotherium simum</string>
-
 </resources>
