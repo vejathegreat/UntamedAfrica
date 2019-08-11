@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.categories;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,9 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.features.animalList.AnimalListActivity;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.Util;
+import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +42,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         CategoryModel categoryModel = categoryModelList.get(position);
-        Util util = new Util();
+        AppUtil appUtil = new AppUtil();
         holder.title.setText(categoryModel.getName());
         holder.description.setText(categoryModel.getDescription());
-
 
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
@@ -51,12 +52,18 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
-
         GlideApp.with(context)
-                .load(util.getImageFromStorage(categoryModel.getImage()))
+                .load(appUtil.getImageFromStorage(categoryModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImage);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent openAnimalListIntent = new Intent(context, AnimalListActivity.class);
+            openAnimalListIntent.putExtra(AnimalListActivity.EXTRA_CATEGORY_NAME, categoryModel.getName());
+            openAnimalListIntent.putExtra(AnimalListActivity.EXTRA_CATEGORY_LEVEL, categoryModel.getLevel());
+            context.startActivity(openAnimalListIntent);
+        });
     }
 
     void setItems(List<CategoryModel> categoryModelList) {
@@ -78,7 +85,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.textview_title);
-            description = view.findViewById(R.id.textView_description);
+            description = view.findViewById(R.id.summary_textview);
             bannerImage = view.findViewById(R.id.background_imageview);
         }
     }

@@ -3,9 +3,9 @@ package com.velaphi.untamed.utils;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class Util {
+public class AppUtil {
 
-    public Util() {
+    public AppUtil() {
     }
 
     public StorageReference getImageFromStorage(String path) {

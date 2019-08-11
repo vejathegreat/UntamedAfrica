@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#999898"
+    android:background="@color/cardBackground"
     card_view:cardCornerRadius="3dp"
     card_view:cardElevation="4dp">
 
@@ -45,7 +45,7 @@
                 tools:text="@tools:sample/lorem" />
 
             <TextView
-                android:id="@+id/textView_description"
+                android:id="@+id/summary_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

@@ -1,5 +1,6 @@
 package com.velaphi.untamed;
 
+import androidx.multidex.BuildConfig;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 

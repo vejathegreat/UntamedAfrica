@@ -5,8 +5,14 @@ import android.content.Context;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.velaphi.untamed.UntamedAfricaApp;
+import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
+import com.velaphi.untamed.repository.contracts.LicensesRepository;
+import com.velaphi.untamed.repository.contracts.SafarisRepository;
+import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.LicensesRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.SafarisRepositoryImpl;
 import com.velaphi.untamed.utils.Analytics;
 import com.velaphi.untamed.utils.UntamedFirebaseAnalytics;
 
@@ -37,6 +43,25 @@ public class UntamedAfricaModule {
 
     @Provides
     @Singleton
+    AnimalListRepository provideAnimalListRepository(FirebaseFirestore firebaseFirestore) {
+        return new AnimalListRepositoryImpl(firebaseFirestore);
+    }
+
+    @Provides
+    @Singleton
+    LicensesRepository provideLicensesRepository(FirebaseFirestore firebaseFirestore) {
+        return new LicensesRepositoryImpl(firebaseFirestore);
+    }
+
+    @Provides
+    @Singleton
+    SafarisRepository provideSafarisRepository(FirebaseFirestore firebaseFirestore) {
+        return new SafarisRepositoryImpl(firebaseFirestore);
+    }
+
+
+    @Provides
+    @Singleton
     FirebaseAnalytics providesFirebaseAnalytics(Context context) {
         return FirebaseAnalytics.getInstance(context);
     }
@@ -52,4 +77,17 @@ public class UntamedAfricaModule {
     FirebaseFirestore providesFirebaseFirestore() {
         return FirebaseFirestore.getInstance();
     }
+//
+//    @Provides
+//    @Singleton
+//    UntamedDatabase providesUntamedDatabase(Context context){
+//        return Room.databaseBuilder(context.getApplicationContext(), UntamedDatabase.class, "untamed.db")
+//                .build();
+//    }
+//
+//    @Provides
+//    @Singleton
+//    FavoritesRepository providesFavoritesRepository(AnimalDao animalDao) {
+//        return new FavoritesRepositoryImpl(animalDao);
+//    }
 }
