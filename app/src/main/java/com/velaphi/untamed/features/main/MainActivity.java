@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.categories.CategoriesFragment;
+import com.velaphi.untamed.features.licenses.OpenSourceLicensesFragment;
 import com.velaphi.untamed.injection.UntamedFactory;
 import com.velaphi.untamed.utils.FragmentBackPressed;
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity
                 .get(NavigationDrawerViewModel.class);
 
         navigationViewModelNavigation.categoryListScreenTrigger.observe(this, (aVoid -> openScreen(new CategoriesFragment())));
+        navigationViewModelNavigation.licenceListScreenTrigger.observe(this, (aVoid -> openScreen(new OpenSourceLicensesFragment())));
     }
 
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_get_involved) {
 
         } else if (id == R.id.nav_contributors) {
-
+            navigationViewModelNavigation.openLicenses();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void openScreen(CategoriesFragment fragment) {
+    public void openScreen(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();

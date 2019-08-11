@@ -11,6 +11,8 @@ import javax.inject.Inject;
 public class NavigationDrawerViewModel extends ViewModel implements UntamedAfricaComponent.Injectable {
 
     public SingleLiveEvent<Void> categoryListScreenTrigger = new SingleLiveEvent<>();
+    public SingleLiveEvent<Void> licenceListScreenTrigger = new SingleLiveEvent<>();
+
     @Inject
     Analytics analytics;
 
@@ -22,5 +24,10 @@ public class NavigationDrawerViewModel extends ViewModel implements UntamedAfric
     public void openCategories() {
         analytics.trackOpenCategories();
         categoryListScreenTrigger.call();
+    }
+
+    public void openLicenses() {
+        analytics.trackOpenLicences();
+        licenceListScreenTrigger.call();
     }
 }

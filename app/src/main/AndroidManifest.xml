@@ -15,9 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".features.animalDetails.MediaViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_media_view"
+            android:theme="@style/FullscreenTheme" />
+        <activity
             android:name=".features.animalDetails.AnimalDetailsActivity"
             android:label="@string/title_activity_animal_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.animalList.AnimalListActivity" />
         <activity
             android:name=".features.main.MainActivity"

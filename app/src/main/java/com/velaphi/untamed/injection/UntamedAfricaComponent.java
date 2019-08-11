@@ -3,6 +3,7 @@ package com.velaphi.untamed.injection;
 
 import com.velaphi.untamed.features.animalList.AnimalListViewModel;
 import com.velaphi.untamed.features.categories.CategoriesViewModel;
+import com.velaphi.untamed.features.licenses.LicencesViewModel;
 import com.velaphi.untamed.features.main.NavigationDrawerViewModel;
 
 import javax.inject.Singleton;
@@ -15,8 +16,9 @@ public interface UntamedAfricaComponent {
 
     void inject(CategoriesViewModel categoriesViewModel);
     void inject(NavigationDrawerViewModel navigationDrawerViewModel);
-
     void inject(AnimalListViewModel animalListViewModel);
+
+    void inject(LicencesViewModel licencesViewModel);
 
     interface Injectable {
         void inject(UntamedAfricaComponent untamedAfricaComponent);

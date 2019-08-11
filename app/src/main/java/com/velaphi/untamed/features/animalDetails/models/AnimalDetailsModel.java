@@ -3,10 +3,14 @@ package com.velaphi.untamed.features.animalDetails.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.List;
 
+@Entity(tableName = "favourite_animal")
 @IgnoreExtraProperties
 public class AnimalDetailsModel implements Parcelable {
 
@@ -18,10 +22,17 @@ public class AnimalDetailsModel implements Parcelable {
     private List<String> located;
     private String key;
     private int level;
+    @PrimaryKey
     private String name;
+    private Boolean isFavorite;
     private List<Challenge> challenges;
     private List<String> predators;
     private List<String> scientificNames;
+    private List<String> weight;
+    private String quotable;
+    private List<Fact> facts;
+    private List<Video> videoList;
+
     public static final Creator<AnimalDetailsModel> CREATOR = new Creator<AnimalDetailsModel>() {
         @Override
         public AnimalDetailsModel createFromParcel(Parcel in) {
@@ -33,10 +44,6 @@ public class AnimalDetailsModel implements Parcelable {
             return new AnimalDetailsModel[size];
         }
     };
-    private List<String> weight;
-    private String quotable;
-    private List<Fact> facts;
-    private List<Video> videoList;
 
     protected AnimalDetailsModel(Parcel in) {
         description = in.readParcelable(Description.class.getClassLoader());
@@ -58,6 +65,14 @@ public class AnimalDetailsModel implements Parcelable {
     }
 
     public AnimalDetailsModel() {
+    }
+
+    public Boolean getFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        isFavorite = favorite;
     }
 
     public static Creator<AnimalDetailsModel> getCREATOR() {

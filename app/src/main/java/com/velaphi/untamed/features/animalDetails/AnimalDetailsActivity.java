@@ -17,12 +17,11 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.Util;
+import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.Objects;
 
@@ -36,22 +35,25 @@ public class AnimalDetailsActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     int shortAnimationDuration;
     private Fragment fragment = null;
+    private boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_details);
-
         getBundles();
         setupToolbar();
         setupTabs();
         setAnimalDetails();
 
         FloatingActionButton favourite = findViewById(R.id.favorite);
-        favourite.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        favourite.setOnClickListener(view -> checkRoomDB());
+    }
+
+    private void checkRoomDB() {
 
     }
+
 
     private void setupTabs() {
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -166,7 +168,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(animalDetailsModel.getName());
 
         quotableTextView.setText(animalDetailsModel.getQuotable());
-        Util util = new Util();
+        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -174,7 +176,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
                 .priority(Priority.HIGH);
 
         GlideApp.with(this)
-                .load(util.getImageFromStorage(animalDetailsModel.getImage()))
+                .load(appUtil.getImageFromStorage(animalDetailsModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(bannerImageView);

@@ -1,6 +1,5 @@
-package com.velaphi.untamed.features.categories;
+package com.velaphi.untamed.features.licenses;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,20 +17,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
+import com.velaphi.untamed.features.categories.CategoriesFragment;
 import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
 
-public class CategoriesFragment extends Fragment {
+import static android.widget.LinearLayout.VERTICAL;
 
-    private CategoriesViewModel categoriesViewModel;
-    private CategoriesAdapter categoriesAdapter;
+public class OpenSourceLicensesFragment extends Fragment {
+
+
+    private LicencesViewModel licencesViewModel;
+    private LicensesAdapter licensesAdapter;
     private ProgressBar progressBar;
     private LinearLayout dataErrorStateLinearLayout;
     private LinearLayout networkErrorStateLinearLayout;
@@ -47,7 +50,7 @@ public class CategoriesFragment extends Fragment {
         setupViewModel();
         setupRecyclerview(view);
         setupView(view);
-        categoriesViewModel.retrieveListOfCategoriesFromFirebase();
+        licencesViewModel.retrieveListOfLicencesFromFirebase();
         return view;
     }
 
@@ -66,27 +69,19 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void setupRecyclerview(View view) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        int orientation = getActivity().getResources().getConfiguration().orientation;
-        RecyclerView categoriesRecyclerView = view.findViewById(R.id.recyclerview_generic);
-        categoriesAdapter = new CategoriesAdapter(getContext());
-
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            layoutManager = new LinearLayoutManager(getActivity());
-        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            int LANDSCAPE_SPAN_COUNT = 2;
-            layoutManager = new GridLayoutManager(getActivity(), LANDSCAPE_SPAN_COUNT);
-        }
-
-        categoriesRecyclerView.setLayoutManager(layoutManager);
-        categoriesRecyclerView.setNestedScrollingEnabled(false);
-        categoriesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        categoriesRecyclerView.setAdapter(categoriesAdapter);
+        RecyclerView licensesRecyclerView = view.findViewById(R.id.recyclerview_generic);
+        licensesAdapter = new LicensesAdapter();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        licensesRecyclerView.setLayoutManager(layoutManager);
+        licensesRecyclerView.setNestedScrollingEnabled(false);
+        licensesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        licensesRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), VERTICAL));
+        licensesRecyclerView.setAdapter(licensesAdapter);
     }
 
     private void setupToolbar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.categories_screen_title);
+        toolbar.setTitle(R.string.licences_title);
         toolbar.setNavigationIcon(R.drawable.ic_nav_open);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> {
@@ -98,15 +93,15 @@ public class CategoriesFragment extends Fragment {
 
     private void setupViewModel() {
         UntamedAfricaApp application = (UntamedAfricaApp) getActivity().getApplication();
-        categoriesViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
-                .get(CategoriesViewModel.class);
+        licencesViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
+                .get(LicencesViewModel.class);
         observeListOfCategories();
         observeExceptionMessage();
     }
 
     private void observeExceptionMessage() {
 
-        categoriesViewModel.getExceptionMessage().observe(this, e -> {
+        licencesViewModel.getExceptionMessage().observe(this, e -> {
             progressBar.setVisibility(View.GONE);
             dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
             networkErrorStateLinearLayout.setVisibility(View.GONE);
@@ -115,15 +110,15 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void observeListOfCategories() {
-        categoriesViewModel.getCategoryListLiveData().observe(this, categoryModelList -> {
+        licencesViewModel.getLicenceListLiveData().observe(this, licenceModelList -> {
             progressBar.setVisibility(View.GONE);
 
-            if (categoryModelList != null) {
-                if (categoryModelList.isEmpty()) {
+            if (licenceModelList != null) {
+                if (licenceModelList.isEmpty()) {
                     dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
                     networkErrorStateLinearLayout.setVisibility(View.GONE);
                 } else {
-                    categoriesAdapter.setItems(categoryModelList);
+                    licensesAdapter.setItems(licenceModelList);
                 }
             } else {
                 dataErrorStateLinearLayout.setVisibility(View.GONE);

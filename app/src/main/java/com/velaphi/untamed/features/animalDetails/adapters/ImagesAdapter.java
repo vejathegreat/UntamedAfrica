@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,18 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.Util;
+import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.List;
 
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder> {
     private List<String> imageList;
     private Context context;
+
+    public static String EXTRA_IMAGE = "EXTRA_IMAGE";
+    public static String EXTRA_URL = "EXTRA_URL";
 
     public ImagesAdapter(Context context, List<String> imageList) {
         this.context = context;
@@ -40,7 +45,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String imageUrl = imageList.get(position);
 
-        Util util = new Util();
+        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -48,10 +53,18 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
-                .load(util.getImageFromStorage(imageUrl))
+                .load(appUtil.getImageFromStorage(imageUrl))
                 .apply(options)
                 .centerCrop()
                 .into(holder.animalImage);
+
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context, MediaViewActivity.class);
+            intent.putExtra(EXTRA_URL, imageUrl);
+            intent.putExtra(EXTRA_IMAGE, true);
+            context.startActivity(intent);
+        });
 
     }
 

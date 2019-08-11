@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalList.AnimalListActivity;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.Util;
+import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         CategoryModel categoryModel = categoryModelList.get(position);
-        Util util = new Util();
+        AppUtil appUtil = new AppUtil();
         holder.title.setText(categoryModel.getName());
         holder.description.setText(categoryModel.getDescription());
 
@@ -53,7 +53,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
-                .load(util.getImageFromStorage(categoryModel.getImage()))
+                .load(appUtil.getImageFromStorage(categoryModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImage);

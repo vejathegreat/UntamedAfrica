@@ -18,7 +18,7 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.AnimalDetailsActivity;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.Util;
+import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class AnimalListAdapter extends RecyclerView.Adapter<AnimalListAdapter.Vi
         AnimalDetailsModel animalDetailsModel = animalDetailsModelList.get(position);
         holder.nameTextView.setText(animalDetailsModel.getName());
 
-        Util util = new Util();
+        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -54,7 +54,7 @@ public class AnimalListAdapter extends RecyclerView.Adapter<AnimalListAdapter.Vi
 
 
         GlideApp.with(context)
-                .load(util.getImageFromStorage(animalDetailsModel.getImage()))
+                .load(appUtil.getImageFromStorage(animalDetailsModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImageView);

@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,16 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
 import com.velaphi.untamed.features.animalDetails.models.Video;
 import com.velaphi.untamed.injection.GlideApp;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE;
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder> {
     private final int MAX_VIDEOS = 5;
@@ -55,6 +60,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
         holder.captionTextView.setText(video.getCaption());
         holder.sourceTextView.setText("Source: " + video.getSource());
+
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context, MediaViewActivity.class);
+            intent.putExtra(EXTRA_URL, video.getUrl());
+            intent.putExtra(EXTRA_IMAGE, false);
+            context.startActivity(intent);
+        });
 
 
         RequestOptions options = new RequestOptions()
