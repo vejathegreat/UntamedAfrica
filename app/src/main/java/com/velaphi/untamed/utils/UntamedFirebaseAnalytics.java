@@ -25,6 +25,11 @@ public class UntamedFirebaseAnalytics implements Analytics {
     }
 
     @Override
+    public void trackOpenSafaris() {
+        firebaseAnalytics.logEvent(FirebaseAnalyticsEnums.VIEW_SAFARI_SCREEN.label, null);
+    }
+
+    @Override
     public void trackCategories(CategoryModel categoryModel) {
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalyticsEnums.VIEW_CATEGORY_NAME.label, categoryModel.getName());
@@ -39,6 +44,7 @@ public class UntamedFirebaseAnalytics implements Analytics {
     public enum FirebaseAnalyticsEnums {
         VIEW_CATEGORY_SCREEN("view_categories"),
         VIEW_LICENCE_SCREEN("view_categories"),
+        VIEW_SAFARI_SCREEN("view_categories"),
         VIEW_CATEGORY_NAME("Category_name"),
         SELECTION_CATEGORY_NAME("clicked_category");
 

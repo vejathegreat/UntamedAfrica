@@ -16,6 +16,7 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.categories.CategoriesFragment;
 import com.velaphi.untamed.features.licenses.OpenSourceLicensesFragment;
+import com.velaphi.untamed.features.safaries.SafarisFragment;
 import com.velaphi.untamed.injection.UntamedFactory;
 import com.velaphi.untamed.utils.FragmentBackPressed;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
 
         navigationViewModelNavigation.categoryListScreenTrigger.observe(this, (aVoid -> openScreen(new CategoriesFragment())));
         navigationViewModelNavigation.licenceListScreenTrigger.observe(this, (aVoid -> openScreen(new OpenSourceLicensesFragment())));
+        navigationViewModelNavigation.safarisScreenTrigger.observe(this, (aVoid -> openScreen(new SafarisFragment())));
     }
 
 
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about_us) {
 
         } else if (id == R.id.nav_safaris) {
-
+            navigationViewModelNavigation.openSafaris();
         } else if (id == R.id.nav_get_involved) {
 
         } else if (id == R.id.nav_contributors) {

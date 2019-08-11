@@ -85,7 +85,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.textview_title);
-            description = view.findViewById(R.id.textView_description);
+            description = view.findViewById(R.id.summary_textview);
             bannerImage = view.findViewById(R.id.background_imageview);
         }
     }

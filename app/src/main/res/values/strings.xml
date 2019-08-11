@@ -13,6 +13,7 @@
     <string name="menu_contributors">Open Source Licenses</string>
     <string name="categories_screen_title">Categories</string>
     <string name="licences_title">Open source licenses</string>
+    <string name="safaris_title">Safaris</string>
     <string name="try_again">Try Again</string>
     <string name="something_went_wrong_try_again_later_or_refresh">Something went wrong, try again later or refresh.</string>
     <string name="no_network_connection_please_check_connection">No network connection, Please check connection.</string>

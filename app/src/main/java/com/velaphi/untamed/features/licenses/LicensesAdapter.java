@@ -39,7 +39,7 @@ public class LicensesAdapter extends RecyclerView.Adapter<LicensesAdapter.ViewHo
             Context context = holder.itemView.getContext();
             WebView view = (WebView) LayoutInflater.from(context).inflate(R.layout.dialog_licenses, null);
             view.loadUrl(licenceModel.getUrl());
-            new AlertDialog.Builder(context, R.style.Theme_AppCompat_Light_Dialog_Alert)
+            new AlertDialog.Builder(context, R.style.AppDialog)
                     .setTitle(licenceModel.getName())
                     .setView(view)
                     .setPositiveButton(android.R.string.ok, null)

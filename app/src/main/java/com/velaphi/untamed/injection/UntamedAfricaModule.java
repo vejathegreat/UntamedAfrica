@@ -8,9 +8,11 @@ import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
 import com.velaphi.untamed.repository.contracts.LicensesRepository;
+import com.velaphi.untamed.repository.contracts.SafarisRepository;
 import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.LicensesRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.SafarisRepositoryImpl;
 import com.velaphi.untamed.utils.Analytics;
 import com.velaphi.untamed.utils.UntamedFirebaseAnalytics;
 
@@ -50,6 +52,13 @@ public class UntamedAfricaModule {
     LicensesRepository provideLicensesRepository(FirebaseFirestore firebaseFirestore) {
         return new LicensesRepositoryImpl(firebaseFirestore);
     }
+
+    @Provides
+    @Singleton
+    SafarisRepository provideSafarisRepository(FirebaseFirestore firebaseFirestore) {
+        return new SafarisRepositoryImpl(firebaseFirestore);
+    }
+
 
     @Provides
     @Singleton

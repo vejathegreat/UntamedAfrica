@@ -1,4 +1,4 @@
-package com.velaphi.untamed.features.licenses;
+package com.velaphi.untamed.features.safaries;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,13 +26,10 @@ import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
 
-import static android.widget.LinearLayout.VERTICAL;
+public class SafarisFragment extends Fragment {
 
-public class OpenSourceLicensesFragment extends Fragment {
-
-
-    private LicencesViewModel licencesViewModel;
-    private LicensesAdapter licensesAdapter;
+    private SafarisViewModel safarisViewModel;
+    private SafarisAdapter safarisAdapter;
     private ProgressBar progressBar;
     private LinearLayout dataErrorStateLinearLayout;
     private LinearLayout networkErrorStateLinearLayout;
@@ -49,7 +45,7 @@ public class OpenSourceLicensesFragment extends Fragment {
         setupViewModel();
         setupRecyclerview(view);
         setupView(view);
-        licencesViewModel.retrieveListOfLicencesFromFirebase();
+        safarisViewModel.retrieveListOfSafarisFromFirebase();
         return view;
     }
 
@@ -63,24 +59,23 @@ public class OpenSourceLicensesFragment extends Fragment {
         refreshButton.setOnClickListener(v -> Objects.requireNonNull(getActivity())
                 .getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new OpenSourceLicensesFragment())
+                .replace(R.id.fragment_container, new SafarisFragment())
                 .commit());
     }
 
     private void setupRecyclerview(View view) {
-        RecyclerView licensesRecyclerView = view.findViewById(R.id.recyclerview_generic);
-        licensesAdapter = new LicensesAdapter();
+        RecyclerView safariesRecyclerView = view.findViewById(R.id.recyclerview_generic);
+        safarisAdapter = new SafarisAdapter(getActivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        licensesRecyclerView.setLayoutManager(layoutManager);
-        licensesRecyclerView.setNestedScrollingEnabled(false);
-        licensesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        licensesRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), VERTICAL));
-        licensesRecyclerView.setAdapter(licensesAdapter);
+        safariesRecyclerView.setLayoutManager(layoutManager);
+        safariesRecyclerView.setNestedScrollingEnabled(false);
+        safariesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        safariesRecyclerView.setAdapter(safarisAdapter);
     }
 
     private void setupToolbar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.licences_title);
+        toolbar.setTitle(R.string.safaris_title);
         toolbar.setNavigationIcon(R.drawable.ic_nav_open);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> {
@@ -92,15 +87,15 @@ public class OpenSourceLicensesFragment extends Fragment {
 
     private void setupViewModel() {
         UntamedAfricaApp application = (UntamedAfricaApp) getActivity().getApplication();
-        licencesViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
-                .get(LicencesViewModel.class);
-        observeListOfLicences();
+        safarisViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
+                .get(SafarisViewModel.class);
+        observeListOfSafaris();
         observeExceptionMessage();
     }
 
     private void observeExceptionMessage() {
 
-        licencesViewModel.getExceptionMessage().observe(this, e -> {
+        safarisViewModel.getExceptionMessage().observe(this, e -> {
             progressBar.setVisibility(View.GONE);
             dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
             networkErrorStateLinearLayout.setVisibility(View.GONE);
@@ -108,16 +103,16 @@ public class OpenSourceLicensesFragment extends Fragment {
 
     }
 
-    private void observeListOfLicences() {
-        licencesViewModel.getLicenceListLiveData().observe(this, licenceModelList -> {
+    private void observeListOfSafaris() {
+        safarisViewModel.getSafarisListLiveData().observe(this, safariModelList -> {
             progressBar.setVisibility(View.GONE);
 
-            if (licenceModelList != null) {
-                if (licenceModelList.isEmpty()) {
+            if (safariModelList != null) {
+                if (safariModelList.isEmpty()) {
                     dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
                     networkErrorStateLinearLayout.setVisibility(View.GONE);
                 } else {
-                    licensesAdapter.setItems(licenceModelList);
+                    safarisAdapter.setItems(safariModelList);
                 }
             } else {
                 dataErrorStateLinearLayout.setVisibility(View.GONE);
