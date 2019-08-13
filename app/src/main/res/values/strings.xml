@@ -33,13 +33,11 @@
     <string name="quick_facts">Quick Facts</string>
     <string name="basic_information">Basic Information</string>
     <string name="challenges">Challenges</string>
-
     <string name="title_activity_media_view">MediaViewActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="google_maps">maps</string>
     <string name="address">Address: </string>
     <string name="geopoint">Coordinates:</string>
-    <string name="static_map_url">http://maps.google.com/maps/api/staticmap?center="</string>
-    <string name="sufix_static_map_url">"&amp;zoom=15&amp;size=400x200&amp;sensor=false&amp;key=AIzaSyD0SXbkX4HptbJMQeU-b_hVjJdhoL5c8h8"</string>
+    <string name="static_map_url">https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=2048x2048&amp;markers=color:red|</string>
 </resources>

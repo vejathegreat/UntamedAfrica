@@ -15,6 +15,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
@@ -50,11 +51,11 @@ public class SafarisAdapter extends RecyclerView.Adapter<SafarisAdapter.ViewHold
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
-//        GlideApp.with(context)
-//                .load(appUtil.getImageFromStorage(safariModel.getImage()))
-//                .apply(options)
-//                .centerCrop()
-//                .into(holder.image);
+        GlideApp.with(context)
+                .load(appUtil.getImageFromStorage(safariModel.getImage()))
+                .apply(options)
+                .centerCrop()
+                .into(holder.image);
 
         holder.itemView.setOnClickListener(v -> {
             Intent safariDetailsIntent = new Intent(context, SafariDetailsActivity.class);

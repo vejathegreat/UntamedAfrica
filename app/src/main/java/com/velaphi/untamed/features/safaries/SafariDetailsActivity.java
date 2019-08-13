@@ -7,12 +7,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.injection.GlideApp;
 
 public class SafariDetailsActivity extends AppCompatActivity {
 
     public final static String EXTRA_SAFARI_DETAILS = "EXTRA_SAFARI_DETAILS";
-    public final static String EXTRA_LATITUDE = "EXTRA_LATITUDE";
-    public final static String EXTRA_LONGITUDE = "EXTRA_LONGITUDE";
     private TextView summaryTextView;
     private TextView detailsextView;
     private TextView geopointTextView;
@@ -37,27 +36,16 @@ public class SafariDetailsActivity extends AppCompatActivity {
         detailsextView.setText(safariModel.getDetails());
         addressTextView.setText(safariModel.getAddress());
 
-//        String url = getString(R.string.static_map_url) +
-//                safariModel.getGeopoint().get(0) +
-//                "," +
-//                safariModel.getGeopoint().get(1) +
-//                getString(R.string.sufix_static_map_url);
+        String url = getString(R.string.static_map_url) +
+                safariModel.getCoordinates().getLatitude() +
+                "," +
+                safariModel.getCoordinates().getLongitude() + "&key=AIzaSyD0SXbkX4HptbJMQeU-b_hVjJdhoL5c8h8";
 
 
-//        MapboxStaticMap staticImage = MapboxStaticMap.builder()
-//                .accessToken("pk.eyJ1IjoidmVsYXBoaSIsImEiOiJjano4d2xmYzMwNnJkM2NycWpjZWp5N2MzIn0.iD1AXJUp6tRzYclZ4CmBCg")
-//                .styleId(StaticMapCriteria.LIGHT_STYLE)
-//                .cameraPoint(Point.fromLngLat(lang, la)) // Image's centerpoint on map
-//                .cameraZoom(13)
-//                .width(320) // Image width
-//                .height(320) // Image height
-//                .retina(true) // Retina 2x image will be returned
-//                .build();
-//
-//        GlideApp.with(this)
-//                .load(url)
-//                .centerCrop()
-//                .into(mapImageView);
+        GlideApp.with(this)
+                .load(url)
+                .centerCrop()
+                .into(mapImageView);
 
     }
 
