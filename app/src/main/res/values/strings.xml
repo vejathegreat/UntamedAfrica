@@ -37,4 +37,9 @@
     <string name="title_activity_media_view">MediaViewActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="google_maps">maps</string>
+    <string name="address">Address: </string>
+    <string name="geopoint">Coordinates:</string>
+    <string name="static_map_url">http://maps.google.com/maps/api/staticmap?center="</string>
+    <string name="sufix_static_map_url">"&amp;zoom=15&amp;size=400x200&amp;sensor=false&amp;key=AIzaSyD0SXbkX4HptbJMQeU-b_hVjJdhoL5c8h8"</string>
 </resources>
