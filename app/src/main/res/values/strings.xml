@@ -35,7 +35,6 @@
     <string name="challenges">Challenges</string>
     <string name="title_activity_media_view">MediaViewActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="google_maps">maps</string>
     <string name="address">Address: </string>
     <string name="geopoint">Coordinates:</string>
