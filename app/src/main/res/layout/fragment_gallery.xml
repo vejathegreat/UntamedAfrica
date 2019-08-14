@@ -37,6 +37,7 @@
 
                     <Button
                         android:id="@+id/view_more_videos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/view_all" />
@@ -80,6 +81,7 @@
 
                     <Button
                         android:id="@+id/view_more_images"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/view_all" />

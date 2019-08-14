@@ -76,15 +76,13 @@
                     tools:text="@tools:sample/lorem/random" />
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/read_more_button"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@null"
                 android:text="@string/read_more"
-                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
             <View

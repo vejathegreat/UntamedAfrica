@@ -3,6 +3,7 @@ package com.velaphi.untamed.features.safaries;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +61,7 @@ public class SafariDetailsActivity extends AppCompatActivity {
 
     private void populateViews() {
         summaryTextView.setText(safariModel.getSummary());
-        detailsTextView.setText(safariModel.getDetails());
+        detailsTextView.setText(safariModel.getDetails().replaceAll("--", "\n"));
         addressTextView.setText(safariModel.getAddress());
         String url = getString(R.string.static_map_url) +
                 safariModel.getCoordinates().getLatitude() +
@@ -81,8 +82,16 @@ public class SafariDetailsActivity extends AppCompatActivity {
         geoPointTextView = findViewById(R.id.geopoint_textview);
         addressTextView = findViewById(R.id.address_textview);
         mapImageView = findViewById(R.id.safari_map_imageview);
+        Button moreInfoButton = findViewById(R.id.more_info);
+        moreInfoButton.setOnClickListener(v -> openWeb());
         mapImageView.setOnClickListener(v -> openMaps());
 
+    }
+
+    private void openWeb() {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(safariModel.getWeb()));
+        startActivity(i);
     }
 
     private void getBundles() {

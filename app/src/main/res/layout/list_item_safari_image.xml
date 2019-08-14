@@ -8,6 +8,7 @@
         android:id="@+id/safari_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp" />
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp" />
 
 </LinearLayout>

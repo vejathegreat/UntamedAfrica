@@ -138,8 +138,16 @@
                 android:id="@+id/details_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
+
+            <Button
+                android:id="@+id/more_info"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                tools:text="@tools:sample/lorem/random" />
+                android:text="@string/more_info" />
+
 
         </LinearLayout>
 
