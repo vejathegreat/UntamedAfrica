@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.safaries;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,9 @@ public class SafarisAdapter extends RecyclerView.Adapter<SafarisAdapter.ViewHold
                 .into(holder.image);
 
         holder.itemView.setOnClickListener(v -> {
-            //TODO open light_box
+            Intent safariDetailsIntent = new Intent(context, SafariDetailsActivity.class);
+            safariDetailsIntent.putExtra(SafariDetailsActivity.EXTRA_SAFARI_DETAILS, safariModel);
+            context.startActivity(safariDetailsIntent);
         });
     }
 
