@@ -1,7 +1,11 @@
 package com.velaphi.untamed.features.getInvolved;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +43,17 @@ public class FoundationDetailsActivity extends AppCompatActivity {
         TextView tagLineTextView = findViewById(R.id.tag_textView);
         tagLineTextView.setText(foundationModel.getTagLine());
         ImageView foundationImageView = findViewById(R.id.foundation_logo_imageView);
+        TextView helptextview = findViewById(R.id.help_textview);
+
+        SpannableString spannablecontent = new SpannableString(helptextview.getText());
+        spannablecontent.setSpan(new UnderlineSpan(),
+                0, spannablecontent.length(), 0);
+        helptextview.setText(spannablecontent);
+        helptextview.setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(foundationModel.getHelpUrl()));
+            startActivity(i);
+        });
 
         AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
