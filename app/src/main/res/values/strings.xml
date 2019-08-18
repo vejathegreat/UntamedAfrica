@@ -14,6 +14,7 @@
     <string name="categories_screen_title">Categories</string>
     <string name="licences_title">Open source licenses</string>
     <string name="safaris_title">Safaris</string>
+    <string name="get_involved_title">Get Involved</string>
     <string name="try_again">Try Again</string>
     <string name="something_went_wrong_try_again_later_or_refresh">Something went wrong, try again later or refresh.</string>
     <string name="no_network_connection_please_check_connection">No network connection, Please check connection.</string>
@@ -34,9 +35,9 @@
     <string name="basic_information">Basic Information</string>
     <string name="challenges">Challenges</string>
     <string name="title_activity_media_view">MediaViewActivity</string>
-    <string name="dummy_button">Dummy Button</string>
     <string name="google_maps">maps</string>
     <string name="address">Address: </string>
-    <string name="geopoint">Coordinates:</string>
     <string name="static_map_url">https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=2048x2048&amp;markers=color:red|</string>
+    <string name="more_info">More Info</string>
+    <string name="header_text">This is a list of organizations leading in wildlife conservation and endangered species you can choose to be part of to assist in their cause.</string>
 </resources>

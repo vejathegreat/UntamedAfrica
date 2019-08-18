@@ -7,8 +7,9 @@ public interface Analytics {
 
     void trackOpenCategories();
     void trackOpenLicences();
-
     void trackOpenSafaris();
+
+    void trackGetInvolved();
 
     void trackCategories(CategoryModel categoryModel);
 

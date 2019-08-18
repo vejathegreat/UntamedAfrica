@@ -28,7 +28,7 @@ import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder> {
-    private final int MAX_VIDEOS = 5;
+    private final int MAX_VIDEOS = 3;
     private List<Video> videoList;
     private Context context;
 

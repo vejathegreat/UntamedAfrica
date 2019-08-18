@@ -1,5 +1,7 @@
 package com.velaphi.untamed.features.safaries;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,15 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE;
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
 
 public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapter.ViewHolder> {
     private List<String> imageList = new ArrayList<>();
@@ -48,6 +54,14 @@ public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapte
                 .apply(options)
                 .centerCrop()
                 .into(holder.safariImageView);
+
+        holder.safariImageView.setOnClickListener(v -> {
+            Context context = holder.itemView.getContext();
+            Intent intent = new Intent(context, MediaViewActivity.class);
+            intent.putExtra(EXTRA_URL, imageUrl);
+            intent.putExtra(EXTRA_IMAGE, true);
+            context.startActivity(intent);
+        });
 
     }
 

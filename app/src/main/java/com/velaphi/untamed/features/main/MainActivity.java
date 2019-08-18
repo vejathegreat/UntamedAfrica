@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.categories.CategoriesFragment;
+import com.velaphi.untamed.features.getInvolved.GetInvolvedFragment;
 import com.velaphi.untamed.features.licenses.OpenSourceLicensesFragment;
 import com.velaphi.untamed.features.safaries.SafarisFragment;
 import com.velaphi.untamed.injection.UntamedFactory;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         navigationViewModelNavigation.categoryListScreenTrigger.observe(this, (aVoid -> openScreen(new CategoriesFragment())));
         navigationViewModelNavigation.licenceListScreenTrigger.observe(this, (aVoid -> openScreen(new OpenSourceLicensesFragment())));
         navigationViewModelNavigation.safarisScreenTrigger.observe(this, (aVoid -> openScreen(new SafarisFragment())));
+        navigationViewModelNavigation.getInvolvedScreenTrigger.observe(this, (aVoid -> openScreen(new GetInvolvedFragment())));
     }
 
 
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_safaris) {
             navigationViewModelNavigation.openSafaris();
         } else if (id == R.id.nav_get_involved) {
-
+            navigationViewModelNavigation.openGetInvolved();
         } else if (id == R.id.nav_contributors) {
             navigationViewModelNavigation.openLicenses();
         }

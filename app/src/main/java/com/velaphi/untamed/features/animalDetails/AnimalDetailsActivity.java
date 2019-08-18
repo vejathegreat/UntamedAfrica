@@ -106,6 +106,8 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
     private void setAnimalDetails() {
         habitatLinearLayout = findViewById(R.id.habitat_layout);
+        ImageView bannerImageView = findViewById(R.id.banner_imageView);
+        TextView quotableTextView = findViewById(R.id.quotable_textView);
         TextView descriptionHeaderTextview = findViewById(R.id.heading_description_textView);
         TextView descriptionDetailsTextview = findViewById(R.id.details_description_textView);
 
@@ -149,24 +151,6 @@ public class AnimalDetailsActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
-
-
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        ImageView bannerImageView = findViewById(R.id.banner_imageView);
-        TextView quotableTextView = findViewById(R.id.quotable_textView);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(animalDetailsModel.getName());
-
         quotableTextView.setText(animalDetailsModel.getQuotable());
         AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
@@ -180,6 +164,24 @@ public class AnimalDetailsActivity extends AppCompatActivity {
                 .apply(options)
                 .centerCrop()
                 .into(bannerImageView);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(animalDetailsModel.getName());
+
+
     }
 
     private void getBundles() {
