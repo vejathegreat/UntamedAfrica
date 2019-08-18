@@ -1,11 +1,13 @@
 package com.velaphi.untamed.features.animalDetails;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -73,6 +75,9 @@ public class FactsFragment extends Fragment {
 
         chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
         chip.setText(value);
+        chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.transparent)));
+        chip.setChipStrokeColorResource(R.color.colorPrimaryDark);
+        chip.setChipStrokeWidth(1);
         chipGroup.addView(chip);
 
     }

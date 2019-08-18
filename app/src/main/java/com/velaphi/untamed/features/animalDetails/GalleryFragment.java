@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,8 @@ public class GalleryFragment extends Fragment {
         videosRecyclerView.setLayoutManager(layoutManager);
         videosRecyclerView.setNestedScrollingEnabled(false);
         videosRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        videosRecyclerView.addItemDecoration(new DividerItemDecoration(videosRecyclerView.getContext(),
+                layoutManager.getOrientation()));
         videosRecyclerView.setAdapter(videosAdapter);
     }
 

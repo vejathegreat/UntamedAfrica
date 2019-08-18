@@ -15,10 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".features.getInvolved.FoundationDetailsActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD0SXbkX4HptbJMQeU-b_hVjJdhoL5c8h8" />
-        <activity android:name=".features.safaries.SafariDetailsActivity"></activity>
+
+        <activity android:name=".features.safaries.SafariDetailsActivity" />
         <activity
             android:name=".features.animalDetails.MediaViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -43,7 +46,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

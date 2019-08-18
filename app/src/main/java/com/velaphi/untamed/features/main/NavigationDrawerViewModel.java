@@ -10,9 +10,10 @@ import javax.inject.Inject;
 
 public class NavigationDrawerViewModel extends ViewModel implements UntamedAfricaComponent.Injectable {
 
-    public SingleLiveEvent<Void> categoryListScreenTrigger = new SingleLiveEvent<>();
-    public SingleLiveEvent<Void> licenceListScreenTrigger = new SingleLiveEvent<>();
-    public SingleLiveEvent<Void> safarisScreenTrigger = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> categoryListScreenTrigger = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> licenceListScreenTrigger = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> safarisScreenTrigger = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> getInvolvedScreenTrigger = new SingleLiveEvent<>();
 
     @Inject
     Analytics analytics;
@@ -35,5 +36,10 @@ public class NavigationDrawerViewModel extends ViewModel implements UntamedAfric
     public void openSafaris() {
         analytics.trackOpenSafaris();
         safarisScreenTrigger.call();
+    }
+
+    public void openGetInvolved() {
+        analytics.trackGetInvolved();
+        getInvolvedScreenTrigger.call();
     }
 }
