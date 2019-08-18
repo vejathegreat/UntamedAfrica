@@ -2,7 +2,6 @@
     <string name="app_name">Untamed Africa</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="menu_categories">Categories</string>
     <string name="menu_favorite">Favorites</string>
     <string name="menu_news">News</string>
@@ -17,7 +16,7 @@
     <string name="get_involved_title">Get Involved</string>
     <string name="try_again">Try Again</string>
     <string name="something_went_wrong_try_again_later_or_refresh">Something went wrong, try again later or refresh.</string>
-    <string name="no_network_connection_please_check_connection">No network connection, Please check connection.</string>
+    <string name="no_network_connection_please_check_connection">No network connection, Please check connection and try again.</string>
     <string name="title_activity_animal_details">AnimalDetailsActivity</string>
     <string name="scientific_names">Scientific Names:</string>
     <string name="habitat">Where do they live? </string>
