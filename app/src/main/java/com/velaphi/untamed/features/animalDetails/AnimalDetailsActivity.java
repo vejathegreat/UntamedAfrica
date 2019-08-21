@@ -21,9 +21,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.Objects;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class AnimalDetailsActivity extends AppCompatActivity {
 
@@ -152,7 +153,6 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         });
 
         quotableTextView.setText(animalDetailsModel.getQuotable());
-        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -160,7 +160,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
                 .priority(Priority.HIGH);
 
         GlideApp.with(this)
-                .load(appUtil.getImageFromStorage(animalDetailsModel.getImage()))
+                .load(getImageFromStorage(animalDetailsModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(bannerImageView);

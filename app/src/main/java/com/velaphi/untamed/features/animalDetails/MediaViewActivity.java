@@ -14,10 +14,10 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE;
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 
 public class MediaViewActivity extends AppCompatActivity {
@@ -71,7 +71,6 @@ public class MediaViewActivity extends AppCompatActivity {
     }
 
     private void displayImage() {
-        AppUtil util = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.black_overlay)
                 .placeholder(R.color.black_overlay)
@@ -79,7 +78,7 @@ public class MediaViewActivity extends AppCompatActivity {
                 .priority(Priority.HIGH);
 
         GlideApp.with(this)
-                .load(util.getImageFromStorage(url))
+                .load(getImageFromStorage(url))
                 .apply(options)
                 .fitCenter()
                 .into(imageView);

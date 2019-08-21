@@ -17,10 +17,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalList.AnimalListActivity;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
     private List<CategoryModel> categoryModelList = new ArrayList<>();
@@ -42,7 +43,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         CategoryModel categoryModel = categoryModelList.get(position);
-        AppUtil appUtil = new AppUtil();
         holder.title.setText(categoryModel.getName());
         holder.description.setText(categoryModel.getDescription());
 
@@ -53,7 +53,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
-                .load(appUtil.getImageFromStorage(categoryModel.getImage()))
+                .load(getImageFromStorage(categoryModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImage);
@@ -66,7 +66,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         });
     }
 
-    void setItems(List<CategoryModel> categoryModelList) {
+    void setItems(List<com.velaphi.untamed.features.categories.CategoryModel> categoryModelList) {
         this.categoryModelList = categoryModelList;
         notifyDataSetChanged();
     }

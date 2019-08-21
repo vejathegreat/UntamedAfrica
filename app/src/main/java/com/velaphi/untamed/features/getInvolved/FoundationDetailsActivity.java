@@ -17,9 +17,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.Objects;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class FoundationDetailsActivity extends AppCompatActivity {
 
@@ -55,7 +56,6 @@ public class FoundationDetailsActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -63,7 +63,7 @@ public class FoundationDetailsActivity extends AppCompatActivity {
                 .priority(Priority.HIGH);
 
         GlideApp.with(this)
-                .load(appUtil.getImageFromStorage(foundationModel.getImage()))
+                .load(getImageFromStorage(foundationModel.getImage()))
                 .apply(options)
                 .centerInside()
                 .into(foundationImageView);

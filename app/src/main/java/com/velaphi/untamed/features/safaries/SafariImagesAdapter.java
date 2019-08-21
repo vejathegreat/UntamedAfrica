@@ -16,13 +16,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE;
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapter.ViewHolder> {
     private List<String> imageList = new ArrayList<>();
@@ -42,7 +42,6 @@ public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapte
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         String imageUrl = imageList.get(position);
-        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -50,7 +49,7 @@ public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapte
                 .priority(Priority.HIGH);
 
         GlideApp.with(holder.itemView.getContext())
-                .load(appUtil.getImageFromStorage(imageUrl))
+                .load(getImageFromStorage(imageUrl))
                 .apply(options)
                 .centerCrop()
                 .into(holder.safariImageView);

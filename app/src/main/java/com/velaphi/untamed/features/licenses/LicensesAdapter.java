@@ -1,14 +1,14 @@
 package com.velaphi.untamed.features.licenses;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.velaphi.untamed.R;
@@ -37,13 +37,10 @@ public class LicensesAdapter extends RecyclerView.Adapter<LicensesAdapter.ViewHo
         holder.itemView.setOnClickListener(v -> {
 
             Context context = holder.itemView.getContext();
-            WebView view = (WebView) LayoutInflater.from(context).inflate(R.layout.dialog_licenses, null);
-            view.loadUrl(licenceModel.getUrl());
-            new AlertDialog.Builder(context, R.style.AppDialog)
-                    .setTitle(licenceModel.getName())
-                    .setView(view)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(licenceModel.getUrl()));
+            context.startActivity(browserIntent);
+
         });
     }
 

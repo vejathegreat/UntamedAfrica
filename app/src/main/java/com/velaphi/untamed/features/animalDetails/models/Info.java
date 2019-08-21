@@ -3,6 +3,9 @@ package com.velaphi.untamed.features.animalDetails.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Info implements Parcelable {
 
     public static final Creator<Info> CREATOR = new Creator<Info>() {

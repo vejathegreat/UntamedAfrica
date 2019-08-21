@@ -1,4 +1,4 @@
-package com.velaphi.untamed.features.licenses;
+package com.velaphi.untamed.features.about;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,16 +26,13 @@ import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
 
-import static android.widget.LinearLayout.VERTICAL;
+public class AboutUsFragment extends Fragment {
 
-public class OpenSourceLicensesFragment extends Fragment {
-
-
-    private LicencesViewModel licencesViewModel;
-    private LicensesAdapter licensesAdapter;
+    private AboutUsViewModel aboutUsViewModel;
     private ProgressBar progressBar;
     private LinearLayout dataErrorStateLinearLayout;
     private LinearLayout networkErrorStateLinearLayout;
+    private AboutAdapter aboutAdapter;
 
     @Nullable
     @Override
@@ -46,10 +42,10 @@ public class OpenSourceLicensesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_generic_with_recyclerview, container, false);
         setupToolbar(view);
-        setupViewModel();
         setupRecyclerview(view);
+        setupViewModel();
         setupView(view);
-        licencesViewModel.retrieveListOfLicencesFromFirebase();
+        aboutUsViewModel.retrieveAboutUsListFromFirebase();
         return view;
     }
 
@@ -63,61 +59,39 @@ public class OpenSourceLicensesFragment extends Fragment {
         refreshButton.setOnClickListener(v -> Objects.requireNonNull(getActivity())
                 .getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new OpenSourceLicensesFragment())
+                .replace(R.id.fragment_container, new AboutUsFragment())
                 .commit());
     }
 
     private void setupRecyclerview(View view) {
-        RecyclerView licensesRecyclerView = view.findViewById(R.id.recyclerview_generic);
-        licensesAdapter = new LicensesAdapter();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        licensesRecyclerView.setLayoutManager(layoutManager);
-        licensesRecyclerView.setNestedScrollingEnabled(false);
-        licensesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        licensesRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), VERTICAL));
-        licensesRecyclerView.setAdapter(licensesAdapter);
-    }
-
-    private void setupToolbar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.licences_title);
-        toolbar.setNavigationIcon(R.drawable.ic_nav_open);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(v -> {
-            DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawer_layout);
-            drawerLayout.openDrawer(GravityCompat.START);
-
-        });
+        RecyclerView aboutUsRecyclerView = view.findViewById(R.id.recyclerview_generic);
+        aboutAdapter = new AboutAdapter();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        aboutUsRecyclerView.setLayoutManager(layoutManager);
+        aboutUsRecyclerView.setNestedScrollingEnabled(false);
+        aboutUsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        aboutUsRecyclerView.setAdapter(aboutAdapter);
     }
 
     private void setupViewModel() {
         UntamedAfricaApp application = (UntamedAfricaApp) getActivity().getApplication();
-        licencesViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
-                .get(LicencesViewModel.class);
-        observeListOfLicences();
+        aboutUsViewModel = ViewModelProviders.of(this, new UntamedFactory(application))
+                .get(AboutUsViewModel.class);
+        observeAboutUsList();
         observeExceptionMessage();
     }
 
-    private void observeExceptionMessage() {
+    private void observeAboutUsList() {
 
-        licencesViewModel.getExceptionMessage().observe(this, e -> {
-            progressBar.setVisibility(View.GONE);
-            dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
-            networkErrorStateLinearLayout.setVisibility(View.GONE);
-        });
-
-    }
-
-    private void observeListOfLicences() {
-        licencesViewModel.getLicenceListLiveData().observe(this, licenceModelList -> {
+        aboutUsViewModel.getAboutUsMutableLiveData().observe(this, aboutUSList -> {
             progressBar.setVisibility(View.GONE);
 
-            if (licenceModelList != null) {
-                if (licenceModelList.isEmpty()) {
+            if (aboutUSList != null) {
+                if (aboutUSList.isEmpty()) {
                     dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
                     networkErrorStateLinearLayout.setVisibility(View.GONE);
                 } else {
-                    licensesAdapter.setItems(licenceModelList);
+                    aboutAdapter.setItems(aboutUSList);
                 }
             } else {
                 dataErrorStateLinearLayout.setVisibility(View.GONE);
@@ -126,5 +100,23 @@ public class OpenSourceLicensesFragment extends Fragment {
         });
     }
 
+    private void observeExceptionMessage() {
+        aboutUsViewModel.getExceptionMessage().observe(this, e -> {
+            progressBar.setVisibility(View.GONE);
+            dataErrorStateLinearLayout.setVisibility(View.VISIBLE);
+            networkErrorStateLinearLayout.setVisibility(View.GONE);
+        });
+    }
 
+    private void setupToolbar(View view) {
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.menu_about);
+        toolbar.setNavigationIcon(R.drawable.ic_nav_open);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> {
+            DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+
+        });
+    }
 }
