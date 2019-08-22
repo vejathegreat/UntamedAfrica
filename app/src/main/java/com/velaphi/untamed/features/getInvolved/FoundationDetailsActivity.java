@@ -44,13 +44,13 @@ public class FoundationDetailsActivity extends AppCompatActivity {
         TextView tagLineTextView = findViewById(R.id.tag_textView);
         tagLineTextView.setText(foundationModel.getTagLine());
         ImageView foundationImageView = findViewById(R.id.foundation_logo_imageView);
-        TextView helptextview = findViewById(R.id.help_textview);
+        TextView helpTextview = findViewById(R.id.help_textview);
 
-        SpannableString spannablecontent = new SpannableString(helptextview.getText());
-        spannablecontent.setSpan(new UnderlineSpan(),
-                0, spannablecontent.length(), 0);
-        helptextview.setText(spannablecontent);
-        helptextview.setOnClickListener(v -> {
+        SpannableString spannableContent = new SpannableString(helpTextview.getText());
+        spannableContent.setSpan(new UnderlineSpan(),
+                0, spannableContent.length(), 0);
+        helpTextview.setText(spannableContent);
+        helpTextview.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(foundationModel.getHelpUrl()));
             startActivity(i);
