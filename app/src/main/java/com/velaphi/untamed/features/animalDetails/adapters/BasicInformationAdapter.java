@@ -1,7 +1,6 @@
 package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.models.Info;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformationAdapter.ViewHolder> {
-    private List<Info> basicInfoList;
+    private List<Info> basicInfoList = new ArrayList<>();
     private Context context;
 
     public BasicInformationAdapter(Context context, List<Info> basicInfoList) {
         this.context = context;
         this.basicInfoList = basicInfoList;
     }
+
+    public BasicInformationAdapter(Context context) {
+        this.context = context;
+    }
+
 
     @NonNull
     @Override
@@ -36,8 +41,14 @@ public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformati
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Info info = basicInfoList.get(position);
-        holder.descriptionTextView.setText(Html.fromHtml(info.getDescription()));
+        holder.descriptionTextView.setText(info.getDescription());
         holder.titleTextView.setText(info.getTitle());
+    }
+
+
+    public void setItems(List<Info> infoList) {
+        this.basicInfoList = infoList;
+        notifyDataSetChanged();
     }
 
 

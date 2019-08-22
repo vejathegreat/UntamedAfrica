@@ -11,6 +11,8 @@ public interface Analytics {
 
     void trackGetInvolved();
 
+    void trackAboutUs();
+
     void trackCategories(CategoryModel categoryModel);
 
     void trackLicenses(LicenceModel licenceModel);

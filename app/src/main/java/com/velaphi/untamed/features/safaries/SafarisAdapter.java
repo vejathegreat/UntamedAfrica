@@ -16,10 +16,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class SafarisAdapter extends RecyclerView.Adapter<SafarisAdapter.ViewHolder> {
     private List<SafariModel> safariModelList = new ArrayList<>();
@@ -41,7 +42,6 @@ public class SafarisAdapter extends RecyclerView.Adapter<SafarisAdapter.ViewHold
     public void onBindViewHolder(@NonNull final SafarisAdapter.ViewHolder holder, int position) {
 
         SafariModel safariModel = safariModelList.get(position);
-        AppUtil appUtil = new AppUtil();
         holder.name.setText(safariModel.getName());
         holder.summary.setText(safariModel.getSummary());
 
@@ -52,7 +52,7 @@ public class SafarisAdapter extends RecyclerView.Adapter<SafarisAdapter.ViewHold
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
-                .load(appUtil.getImageFromStorage(safariModel.getImage()))
+                .load(getImageFromStorage(safariModel.getImage()))
                 .apply(options)
                 .centerCrop()
                 .into(holder.image);

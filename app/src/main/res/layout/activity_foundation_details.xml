@@ -37,6 +37,7 @@
                 android:textSize="18sp"
                 tools:text="TextView" />
 
+
             <TextView
                 android:id="@+id/visit_us_textView"
                 android:layout_width="match_parent"
@@ -47,6 +48,17 @@
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
                 tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/help_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/i_want_to_volunteer_or_contribute_to_this_cause"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/content_textView"

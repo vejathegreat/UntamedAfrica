@@ -16,10 +16,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.ViewHolder> {
 
@@ -43,7 +44,6 @@ public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.
         holder.foundationNameTexView.setText(foundationModel.getName());
 
         Context context = holder.itemView.getContext();
-        AppUtil appUtil = new AppUtil();
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -51,7 +51,7 @@ public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
-                .load(appUtil.getImageFromStorage(foundationModel.getImage()))
+                .load(getImageFromStorage(foundationModel.getImage()))
                 .apply(options)
                 .centerInside()
                 .into(holder.foundationImageView);

@@ -1,7 +1,11 @@
 package com.velaphi.untamed.features.getInvolved;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,9 +17,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
-import com.velaphi.untamed.utils.AppUtil;
 
 import java.util.Objects;
+
+import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class FoundationDetailsActivity extends AppCompatActivity {
 
@@ -39,8 +44,18 @@ public class FoundationDetailsActivity extends AppCompatActivity {
         TextView tagLineTextView = findViewById(R.id.tag_textView);
         tagLineTextView.setText(foundationModel.getTagLine());
         ImageView foundationImageView = findViewById(R.id.foundation_logo_imageView);
+        TextView helpTextview = findViewById(R.id.help_textview);
 
-        AppUtil appUtil = new AppUtil();
+        SpannableString spannableContent = new SpannableString(helpTextview.getText());
+        spannableContent.setSpan(new UnderlineSpan(),
+                0, spannableContent.length(), 0);
+        helpTextview.setText(spannableContent);
+        helpTextview.setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(foundationModel.getHelpUrl()));
+            startActivity(i);
+        });
+
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
                 .placeholder(R.color.colorAccent)
@@ -48,7 +63,7 @@ public class FoundationDetailsActivity extends AppCompatActivity {
                 .priority(Priority.HIGH);
 
         GlideApp.with(this)
-                .load(appUtil.getImageFromStorage(foundationModel.getImage()))
+                .load(getImageFromStorage(foundationModel.getImage()))
                 .apply(options)
                 .centerInside()
                 .into(foundationImageView);

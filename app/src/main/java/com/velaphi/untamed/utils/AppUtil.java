@@ -8,7 +8,7 @@ public class AppUtil {
     public AppUtil() {
     }
 
-    public StorageReference getImageFromStorage(String path) {
+    public static StorageReference getImageFromStorage(String path) {
 
         if (path == null) {
             return null;

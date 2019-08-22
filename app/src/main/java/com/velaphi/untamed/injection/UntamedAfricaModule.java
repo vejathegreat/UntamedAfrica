@@ -5,11 +5,13 @@ import android.content.Context;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.velaphi.untamed.UntamedAfricaApp;
+import com.velaphi.untamed.repository.contracts.AboutUsRepository;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
 import com.velaphi.untamed.repository.contracts.GetInvolvedRepository;
 import com.velaphi.untamed.repository.contracts.LicensesRepository;
 import com.velaphi.untamed.repository.contracts.SafarisRepository;
+import com.velaphi.untamed.repository.implementation.AboutUsRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.GetInvolvedRepositoryImpl;
@@ -65,6 +67,12 @@ public class UntamedAfricaModule {
     @Singleton
     GetInvolvedRepository provideGetInvolvedRepository(FirebaseFirestore firebaseFirestore) {
         return new GetInvolvedRepositoryImpl(firebaseFirestore);
+    }
+
+    @Provides
+    @Singleton
+    AboutUsRepository provideAboutUsRepository(FirebaseFirestore firebaseFirestore) {
+        return new AboutUsRepositoryImpl(firebaseFirestore);
     }
 
 
