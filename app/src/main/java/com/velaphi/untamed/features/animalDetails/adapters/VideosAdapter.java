@@ -2,7 +2,7 @@ package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
-import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
+import com.velaphi.untamed.features.animalDetails.VideoPlayerActivity;
 import com.velaphi.untamed.features.animalDetails.models.Video;
 import com.velaphi.untamed.injection.GlideApp;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
-import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE;
-import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
-
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder> {
-    private final int MAX_VIDEOS = 3;
     private List<Video> videoList;
     private Context context;
 
@@ -50,22 +45,13 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
     public void onBindViewHolder(@NonNull VideosAdapter.ViewHolder holder, int position) {
         Video video = videoList.get(position);
 
-
-        URL thumbnailUrl = null;
-        try {
-            thumbnailUrl = getThumbnail(video);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
         holder.captionTextView.setText(video.getCaption());
         holder.sourceTextView.setText("Source: " + video.getSource());
 
         holder.itemView.setOnClickListener(v -> {
 
-            Intent intent = new Intent(context, MediaViewActivity.class);
-            intent.putExtra(EXTRA_URL, video.getUrl());
-            intent.putExtra(EXTRA_IMAGE, false);
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_URL, video.getUrl());
             context.startActivity(intent);
         });
 
@@ -76,29 +62,24 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
+        RequestBuilder<Drawable> thumbnailRequest = GlideApp
+                .with(context)
+                .load(video.getUrl());
+
         GlideApp.with(context)
-                .load(thumbnailUrl)
+                .load(video.getUrl())
+                .thumbnail(thumbnailRequest)
                 .apply(options)
                 .centerCrop()
                 .into(holder.thumbnailImageView);
 
     }
 
-    private URL getThumbnail(Video video) throws MalformedURLException {
-        if (video.getType().equals("YouTube")) {
-            Uri uri = Uri.parse(video.getUrl());
-            String videoID = uri.getQueryParameter("v");
-            return new URL(("https://img.youtube.com/vi/") + (videoID) + ("/0.jpg"));
-        }
-
-        return null;
-    }
-
     @Override
     public int getItemCount() {
 
+        int MAX_VIDEOS = 3;
         if (videoList.size() > MAX_VIDEOS) {
-
             return MAX_VIDEOS;
         } else {
             return videoList.size();

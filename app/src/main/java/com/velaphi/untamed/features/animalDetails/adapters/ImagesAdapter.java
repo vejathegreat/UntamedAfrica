@@ -14,7 +14,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
-import com.velaphi.untamed.features.animalDetails.MediaViewActivity;
+import com.velaphi.untamed.features.animalDetails.ImageViewerActivity;
 import com.velaphi.untamed.injection.GlideApp;
 
 import java.util.List;
@@ -60,7 +60,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
         holder.itemView.setOnClickListener(v -> {
 
-            Intent intent = new Intent(context, MediaViewActivity.class);
+            Intent intent = new Intent(context, ImageViewerActivity.class);
             intent.putExtra(EXTRA_URL, imageUrl);
             intent.putExtra(EXTRA_IMAGE, true);
             context.startActivity(intent);
