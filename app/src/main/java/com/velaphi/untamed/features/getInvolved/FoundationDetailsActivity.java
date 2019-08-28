@@ -3,9 +3,6 @@ package com.velaphi.untamed.features.getInvolved;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,23 +35,17 @@ public class FoundationDetailsActivity extends AppCompatActivity {
 
     private void setupView() {
         TextView visitUsTextView = findViewById(R.id.visit_us_textView);
-        visitUsTextView.setText(Html.fromHtml(foundationModel.getMainSite()));
         TextView contentTextView = findViewById(R.id.content_textView);
         contentTextView.setText(foundationModel.getContent());
         TextView tagLineTextView = findViewById(R.id.tag_textView);
         tagLineTextView.setText(foundationModel.getTagLine());
         ImageView foundationImageView = findViewById(R.id.foundation_logo_imageView);
         TextView helpTextview = findViewById(R.id.help_textview);
-
-        SpannableString spannableContent = new SpannableString(helpTextview.getText());
-        spannableContent.setSpan(new UnderlineSpan(),
-                0, spannableContent.length(), 0);
-        helpTextview.setText(spannableContent);
         helpTextview.setOnClickListener(v -> {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(foundationModel.getHelpUrl()));
-            startActivity(i);
+            openWeb(foundationModel.getHelpUrl());
         });
+
+        visitUsTextView.setOnClickListener(v -> openWeb(foundationModel.getMainSite()));
 
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)
@@ -67,6 +58,12 @@ public class FoundationDetailsActivity extends AppCompatActivity {
                 .apply(options)
                 .centerInside()
                 .into(foundationImageView);
+    }
+
+    private void openWeb(String link) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(link));
+        startActivity(i);
     }
 
     private void setupToolbar() {

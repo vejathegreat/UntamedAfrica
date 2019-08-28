@@ -42,12 +42,15 @@
                 android:id="@+id/visit_us_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="8dp"
                 android:autoLink="web"
                 android:drawableStart="@drawable/ic_web"
                 android:drawablePadding="16dp"
                 android:gravity="center_vertical"
-                tools:text="TextView" />
+                android:text="@string/website"
+                android:textAlignment="gravity"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/help_textview"
@@ -55,9 +58,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/i_want_to_volunteer_or_contribute_to_this_cause"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
+                android:drawableStart="@drawable/ic_volunteer"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
                 android:textStyle="italic" />
 
             <TextView

@@ -18,4 +18,16 @@ public class AppUtil {
             return storageRef.child(path);
         }
     }
+
+    public static StorageReference getVideoFromStorage(String path) {
+
+        if (path == null) {
+            return null;
+        } else {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            return storageRef.child(path);
+        }
+    }
+
 }

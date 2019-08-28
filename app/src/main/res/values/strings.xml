@@ -39,5 +39,6 @@
     <string name="static_map_url">https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=2048x2048&amp;markers=color:red|</string>
     <string name="more_info">More Info</string>
     <string name="header_text">This is a list of organizations leading in wildlife conservation and endangered species you can choose to be part of to assist in their cause.</string>
-    <string name="i_want_to_volunteer_or_contribute_to_this_cause">I want to Volunteer or Contribute to this foundation.</string>
+    <string name="i_want_to_volunteer_or_contribute_to_this_cause">Volunteer</string>
+    <string name="website">Website</string>
 </resources>
