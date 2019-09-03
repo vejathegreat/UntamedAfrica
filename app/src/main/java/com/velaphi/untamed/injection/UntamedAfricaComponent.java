@@ -2,6 +2,7 @@ package com.velaphi.untamed.injection;
 
 
 import com.velaphi.untamed.features.about.AboutUsViewModel;
+import com.velaphi.untamed.features.animalDetails.AnimalDetailsViewModel;
 import com.velaphi.untamed.features.animalList.AnimalListViewModel;
 import com.velaphi.untamed.features.categories.CategoriesViewModel;
 import com.velaphi.untamed.features.getInvolved.GetInvolvedViewModel;
@@ -23,8 +24,9 @@ public interface UntamedAfricaComponent {
     void inject(LicencesViewModel licencesViewModel);
     void inject(GetInvolvedViewModel getInvolvedViewModel);
     void inject(SafarisViewModel safarisViewModel);
-
     void inject(AboutUsViewModel aboutUsViewModel);
+
+    void inject(AnimalDetailsViewModel animalDetailsViewModel);
 
     interface Injectable {
         void inject(UntamedAfricaComponent untamedAfricaComponent);

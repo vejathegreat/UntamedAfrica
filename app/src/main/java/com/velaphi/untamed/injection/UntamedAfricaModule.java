@@ -2,17 +2,23 @@ package com.velaphi.untamed.injection;
 
 import android.content.Context;
 
+import androidx.room.Room;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.velaphi.untamed.UntamedAfricaApp;
+import com.velaphi.untamed.features.database.AnimalsDao;
+import com.velaphi.untamed.features.database.AnimalsDatabase;
 import com.velaphi.untamed.repository.contracts.AboutUsRepository;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
+import com.velaphi.untamed.repository.contracts.AnimalRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
 import com.velaphi.untamed.repository.contracts.GetInvolvedRepository;
 import com.velaphi.untamed.repository.contracts.LicensesRepository;
 import com.velaphi.untamed.repository.contracts.SafarisRepository;
 import com.velaphi.untamed.repository.implementation.AboutUsRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.AnimalRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.GetInvolvedRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.LicensesRepositoryImpl;
@@ -75,6 +81,17 @@ public class UntamedAfricaModule {
         return new AboutUsRepositoryImpl(firebaseFirestore);
     }
 
+    @Provides
+    @Singleton
+    AnimalRepository provideAnimalRepository(AnimalsDatabase animalsDatabase) {
+        return new AnimalRepositoryImpl(animalsDatabase);
+    }
+
+    @Provides
+    @Singleton
+    AnimalsDao provideAnimalsDao(AnimalsDatabase animalsDatabase) {
+        return animalsDatabase.getAnimalsDao();
+    }
 
     @Provides
     @Singleton
@@ -93,17 +110,10 @@ public class UntamedAfricaModule {
     FirebaseFirestore providesFirebaseFirestore() {
         return FirebaseFirestore.getInstance();
     }
-//
-//    @Provides
-//    @Singleton
-//    UntamedDatabase providesUntamedDatabase(Context context){
-//        return Room.databaseBuilder(context.getApplicationContext(), UntamedDatabase.class, "untamed.db")
-//                .build();
-//    }
-//
-//    @Provides
-//    @Singleton
-//    FavoritesRepository providesFavoritesRepository(AnimalDao animalDao) {
-//        return new FavoritesRepositoryImpl(animalDao);
-//    }
+
+    @Provides
+    @Singleton
+    AnimalsDatabase providesAnimalsDatabase(Context context) {
+        return Room.databaseBuilder(context.getApplicationContext(), AnimalsDatabase.class, "favorite_animals.db").build();
+    }
 }
