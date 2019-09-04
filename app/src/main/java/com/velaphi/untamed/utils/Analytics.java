@@ -9,6 +9,7 @@ public interface Analytics {
     void trackOpenLicences();
     void trackOpenSafaris();
 
+    void trackFavorites();
     void trackGetInvolved();
 
     void trackAboutUs();
@@ -16,4 +17,6 @@ public interface Analytics {
     void trackCategories(CategoryModel categoryModel);
 
     void trackLicenses(LicenceModel licenceModel);
+
+
 }

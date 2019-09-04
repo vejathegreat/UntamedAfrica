@@ -15,6 +15,7 @@ public class NavigationDrawerViewModel extends ViewModel implements UntamedAfric
     SingleLiveEvent<Void> safarisScreenTrigger = new SingleLiveEvent<>();
     SingleLiveEvent<Void> getInvolvedScreenTrigger = new SingleLiveEvent<>();
     SingleLiveEvent<Void> aboutUsScreenTrigger = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> favoritesScreenTrigger = new SingleLiveEvent<>();
 
     @Inject
     Analytics analytics;
@@ -47,5 +48,10 @@ public class NavigationDrawerViewModel extends ViewModel implements UntamedAfric
     public void openAboutUs() {
         analytics.trackAboutUs();
         aboutUsScreenTrigger.call();
+    }
+
+    public void openFavorites() {
+        analytics.trackFavorites();
+        favoritesScreenTrigger.call();
     }
 }

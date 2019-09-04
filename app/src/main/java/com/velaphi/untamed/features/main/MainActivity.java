@@ -16,6 +16,7 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.about.AboutUsFragment;
 import com.velaphi.untamed.features.categories.CategoriesFragment;
+import com.velaphi.untamed.features.favorites.FavoriteFragment;
 import com.velaphi.untamed.features.getInvolved.GetInvolvedFragment;
 import com.velaphi.untamed.features.licenses.OpenSourceLicensesFragment;
 import com.velaphi.untamed.features.safaries.SafarisFragment;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         navigationViewModelNavigation.safarisScreenTrigger.observe(this, (aVoid -> openScreen(new SafarisFragment())));
         navigationViewModelNavigation.getInvolvedScreenTrigger.observe(this, (aVoid -> openScreen(new GetInvolvedFragment())));
         navigationViewModelNavigation.aboutUsScreenTrigger.observe(this, (aVoid -> openScreen(new AboutUsFragment())));
+        navigationViewModelNavigation.favoritesScreenTrigger.observe(this, (aVoid -> openScreen(new FavoriteFragment())));
     }
 
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_categories) {
             navigationViewModelNavigation.openCategories();
         } else if (id == R.id.nav_favorites) {
-
+            navigationViewModelNavigation.openFavorites();
         } else if (id == R.id.nav_announcement) {
 
         } else if (id == R.id.nav_news) {

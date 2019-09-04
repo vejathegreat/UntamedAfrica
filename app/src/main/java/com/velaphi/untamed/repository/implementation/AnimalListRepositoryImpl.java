@@ -2,13 +2,10 @@ package com.velaphi.untamed.repository.implementation;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
-import com.velaphi.untamed.features.database.AnimalsDatabase;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 
 import java.util.ArrayList;
@@ -23,12 +20,11 @@ public class AnimalListRepositoryImpl implements AnimalListRepository {
     @Inject
     FirebaseFirestore firebaseFirestore;
 
-    @Inject
-    AnimalsDatabase animalsDatabase;
 
     public AnimalListRepositoryImpl(FirebaseFirestore firebaseFirestore) {
         this.firebaseFirestore = firebaseFirestore;
     }
+
 
     @Override
     public void getListOfAnimalsFromFirebase(int level, RepositoryCallback callback) {
@@ -55,8 +51,5 @@ public class AnimalListRepositoryImpl implements AnimalListRepository {
         });
     }
 
-    @Override
-    public LiveData<List<AnimalDetailsModel>> getFavoriteAnimals() {
-        return animalsDatabase.getAnimalsDao().getFavoriteAnimals();
-    }
+
 }
