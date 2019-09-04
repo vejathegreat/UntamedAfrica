@@ -71,15 +71,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-
-        final int MAX_VIDEOS = 8;
-        if (imageList.size() > MAX_VIDEOS) {
-
-            return MAX_VIDEOS;
-        } else {
-            return imageList.size();
-        }
-
+        return imageList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

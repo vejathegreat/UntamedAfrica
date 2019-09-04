@@ -20,6 +20,7 @@
         <item
             android:id="@+id/nav_announcement"
             android:icon="@drawable/ic_announcements"
+            android:visible="false"
             android:title="@string/menu_announcement" />
 
         <item

@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_favorites) {
             navigationViewModelNavigation.openFavorites();
         } else if (id == R.id.nav_announcement) {
-
+            //Announcements Micro-service in progress
         } else if (id == R.id.nav_news) {
-
+            //News Micro-service in progress
         } else if (id == R.id.nav_about_us) {
             navigationViewModelNavigation.openAboutUs();
         } else if (id == R.id.nav_safaris) {
