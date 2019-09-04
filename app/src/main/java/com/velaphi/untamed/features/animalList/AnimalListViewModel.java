@@ -1,11 +1,13 @@
 package com.velaphi.untamed.features.animalList;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.UntamedAfricaComponent;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
+import com.velaphi.untamed.repository.contracts.FavouritesRepository;
 
 import java.util.List;
 
@@ -16,7 +18,12 @@ public class AnimalListViewModel extends ViewModel implements UntamedAfricaCompo
     @Inject
     AnimalListRepository animalListRepository;
 
+    @Inject
+    FavouritesRepository favouritesRepository;
+
+
     private MutableLiveData<List<AnimalDetailsModel>> animalDetailListLiveData = new MutableLiveData<>();
+    private LiveData<List<AnimalDetailsModel>> favAnimalsListLiveData = new MutableLiveData<>();
     private MutableLiveData<Exception> exceptionStatus = new MutableLiveData<>();
 
 
@@ -40,8 +47,12 @@ public class AnimalListViewModel extends ViewModel implements UntamedAfricaCompo
         });
     }
 
-    MutableLiveData<List<AnimalDetailsModel>> getAnimalDetailListLiveData() {
+    public MutableLiveData<List<AnimalDetailsModel>> getAnimalDetailListLiveData() {
         return animalDetailListLiveData;
+    }
+
+    public LiveData<List<AnimalDetailsModel>> retrieveFavMovies() {
+        return favouritesRepository.getFavouriteAnimals();
     }
 
     MutableLiveData<Exception> getExceptionMessage() {

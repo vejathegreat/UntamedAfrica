@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,8 +21,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
+import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.GlideApp;
+import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
 
@@ -36,7 +40,8 @@ public class AnimalDetailsActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     int shortAnimationDuration;
     private Fragment fragment = null;
-    private boolean isFavorite = false;
+    private FloatingActionButton favouriteFab;
+    private AnimalDetailsViewModel animalDetailsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +51,30 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         setupToolbar();
         setupTabs();
         setAnimalDetails();
-
-        FloatingActionButton favourite = findViewById(R.id.favorite);
-        favourite.setOnClickListener(view -> checkRoomDB());
+        setupFab();
     }
 
-    private void checkRoomDB() {
+    private void setupFab() {
+        favouriteFab = findViewById(R.id.favorite);
+        UntamedAfricaApp application = (UntamedAfricaApp) this.getApplication();
+        animalDetailsViewModel = ViewModelProviders.of(this, new UntamedFactory(application)).get(AnimalDetailsViewModel.class);
+        animalDetailsViewModel.retrieveIsFavorite(animalDetailsModel.getName());
+        favouriteFab.setOnClickListener(v -> animalDetailsViewModel.toggleFab(animalDetailsModel));
+        animalDetailsViewModel.isFavourite.observe(this, animalDetailsModel -> {
+            if (animalDetailsModel != null) {
+                updateFab(true);
+            } else {
+                updateFab(false);
+            }
+        });
+    }
+
+    private void updateFab(Boolean isFavorite) {
+        if (isFavorite) {
+            favouriteFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_filled));
+        } else {
+            favouriteFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_empty));
+        }
 
     }
 

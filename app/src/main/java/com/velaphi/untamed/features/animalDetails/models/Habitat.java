@@ -3,9 +3,13 @@ package com.velaphi.untamed.features.animalDetails.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
+@Entity
 public class Habitat implements Parcelable {
     private String summary;
     private String description;
@@ -13,6 +17,7 @@ public class Habitat implements Parcelable {
     public Habitat() {
     }
 
+    @Ignore
     public Habitat(String summary, String description) {
         this.summary = summary;
         this.description = description;

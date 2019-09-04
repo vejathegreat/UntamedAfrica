@@ -30,6 +30,11 @@ public class UntamedFirebaseAnalytics implements Analytics {
     }
 
     @Override
+    public void trackFavorites() {
+        firebaseAnalytics.logEvent(FirebaseAnalyticsEnums.VIEW_FAVORITES.label, null);
+    }
+
+    @Override
     public void trackGetInvolved() {
         firebaseAnalytics.logEvent(FirebaseAnalyticsEnums.VIEW_GET_INVOLVED.label, null);
     }
@@ -58,6 +63,7 @@ public class UntamedFirebaseAnalytics implements Analytics {
         VIEW_CATEGORY_NAME("Category_name"),
         VIEW_GET_INVOLVED("view_get_involved"),
         VIEW_ABOUT_US("view_about_us"),
+        VIEW_FAVORITES("view_favorites"),
         SELECTION_CATEGORY_NAME("clicked_category");
 
         public final String label;

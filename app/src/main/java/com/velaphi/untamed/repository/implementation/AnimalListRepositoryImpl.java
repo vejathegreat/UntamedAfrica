@@ -11,14 +11,20 @@ import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class AnimalListRepositoryImpl implements AnimalListRepository {
 
     private final String TAG = "AnimalListRepository";
-    private FirebaseFirestore firebaseFirestore;
+
+    @Inject
+    FirebaseFirestore firebaseFirestore;
+
 
     public AnimalListRepositoryImpl(FirebaseFirestore firebaseFirestore) {
         this.firebaseFirestore = firebaseFirestore;
     }
+
 
     @Override
     public void getListOfAnimalsFromFirebase(int level, RepositoryCallback callback) {
@@ -44,4 +50,6 @@ public class AnimalListRepositoryImpl implements AnimalListRepository {
             }
         });
     }
+
+
 }
