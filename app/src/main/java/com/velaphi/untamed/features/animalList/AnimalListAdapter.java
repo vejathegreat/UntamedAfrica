@@ -66,8 +66,14 @@ public class AnimalListAdapter extends RecyclerView.Adapter<AnimalListAdapter.Vi
         });
     }
 
-    void setItems(List<AnimalDetailsModel> animalDetailsModelList) {
+    public void setItems(List<AnimalDetailsModel> animalDetailsModelList) {
         this.animalDetailsModelList = animalDetailsModelList;
+        notifyDataSetChanged();
+    }
+
+
+    public void clearList() {
+        this.animalDetailsModelList.clear();
         notifyDataSetChanged();
     }
 
