@@ -77,14 +77,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-
-        int MAX_VIDEOS = 3;
-        if (videoList.size() > MAX_VIDEOS) {
-            return MAX_VIDEOS;
-        } else {
-            return videoList.size();
-        }
-
+        return videoList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

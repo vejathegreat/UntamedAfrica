@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -29,27 +28,11 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
         animalDetailsModel = getArguments().getParcelable(AnimalDetailsActivity.EXTRA_ANIMAL_DETAILS);
-        setupButtons(view);
         setupVideosRecyclerView(view);
         setupImagesRecyclerView(view);
         return view;
     }
 
-    private void setupButtons(View view) {
-        Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
-        Button viewMoreImagesButton = view.findViewById(R.id.view_more_images);
-
-        int MAX_VIDEOS = 5;
-        int MAX_IMAGES = 8;
-
-        if (animalDetailsModel.getVideoList().size() <= MAX_VIDEOS) {
-            viewMoreVideosButton.setVisibility(View.GONE);
-        }
-
-        if (animalDetailsModel.getImageList().size() <= MAX_IMAGES) {
-            viewMoreImagesButton.setVisibility(View.GONE);
-        }
-    }
 
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
