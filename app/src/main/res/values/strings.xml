@@ -42,4 +42,7 @@
     <string name="i_want_to_volunteer_or_contribute_to_this_cause">Volunteer</string>
     <string name="website">Website</string>
     <string name="looks_like_you_don_t_have_any_favorite_animals">Looks like you don\'t have favorite Animals.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_animal_key">widget_animal_key</string>
 </resources>

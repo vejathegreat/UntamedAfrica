@@ -23,6 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.widget.AppWidgetService;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.injection.UntamedFactory;
 
@@ -137,14 +138,13 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         TextView habitatHeadertextview = findViewById(R.id.heading_habitat_textView);
         TextView habitatDetailsTextview = findViewById(R.id.details_habitat_textView);
-
+        AppWidgetService.updateWidget(this, animalDetailsModel.getDescription().getDetails());
         StringBuilder habitat = new StringBuilder();
         habitat.append(getString(R.string.habitat));
         habitatDetailsTextview.setText(animalDetailsModel.getHabitat().getDescription());
         habitatHeadertextview.setText(habitat);
 
         Button readMoreButton = findViewById(R.id.read_more_button);
-
         final int MAX_LINES = 50;
         final int MIN_LINES = 4;
 
