@@ -23,11 +23,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.animalDetails.models.Fact;
 import com.velaphi.untamed.features.widget.AppWidgetService;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
+import java.util.Random;
 
 import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
@@ -138,7 +140,9 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         TextView habitatHeadertextview = findViewById(R.id.heading_habitat_textView);
         TextView habitatDetailsTextview = findViewById(R.id.details_habitat_textView);
-        AppWidgetService.updateWidget(this, animalDetailsModel.getDescription().getDetails());
+        Random randomElement = new Random();
+        Fact fact = animalDetailsModel.getFacts().get(randomElement.nextInt(animalDetailsModel.getFacts().size()));
+        AppWidgetService.updateWidget(this, fact);
         StringBuilder habitat = new StringBuilder();
         habitat.append(getString(R.string.habitat));
         habitatDetailsTextview.setText(animalDetailsModel.getHabitat().getDescription());

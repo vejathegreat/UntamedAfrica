@@ -6,12 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViewsService;
 
+import com.velaphi.untamed.features.animalDetails.models.Fact;
 import com.velaphi.untamed.utils.Prefs;
 
 public class AppWidgetService extends RemoteViewsService {
 
-    public static void updateWidget(Context context, String description) {
-        Prefs.saveDescription(context, description);
+    public static void updateWidget(Context context, Fact fact) {
+        Prefs.saveFact(context, fact);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, NewAppWidget.class));
