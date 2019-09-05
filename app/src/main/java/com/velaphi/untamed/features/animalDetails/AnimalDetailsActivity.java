@@ -51,10 +51,15 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_details);
         getBundles();
-        setupToolbar();
-        setupTabs();
-        setAnimalDetails();
-        setupFab();
+
+        if (savedInstanceState == null) {
+            setupTabs();
+            setupToolbar();
+            setAnimalDetails();
+            setupFab();
+        }
+
+
     }
 
     private void setupFab() {
