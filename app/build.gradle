@@ -3,6 +3,14 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('/Users/veli/keystore')
+            storePassword 'password'
+            keyAlias = 'key0'
+            keyPassword 'password'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.velaphi.untamed"
@@ -17,8 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+
         }
     }
+
 
     dataBinding {
         enabled true
