@@ -11,6 +11,7 @@ android {
             keyPassword 'password'
         }
     }
+    
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.velaphi.untamed"
