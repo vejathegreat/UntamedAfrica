@@ -1,5 +1,7 @@
 package com.velaphi.untamed.features.animalDetails;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -16,7 +18,7 @@ import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 
 public class ImageViewerActivity extends AppCompatActivity {
-
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +27,31 @@ public class ImageViewerActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.image_view);
 
         String url = getIntent().getStringExtra(EXTRA_URL);
-        RequestOptions options = new RequestOptions()
-                .error(R.color.black_overlay)
-                .placeholder(R.color.black_overlay)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .priority(Priority.HIGH);
+        if (savedInstanceState == null) {
+            RequestOptions options = new RequestOptions()
+                    .error(R.color.black_overlay)
+                    .placeholder(R.color.black_overlay)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .priority(Priority.HIGH);
+            GlideApp.with(this).load(getImageFromStorage(url)).apply(options).fitCenter().into(imageView);
+        }
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        outState.putParcelable("image", bitmap);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Bitmap image = savedInstanceState.getParcelable("image");
         GlideApp.with(this)
-                .load(getImageFromStorage(url))
-                .apply(options)
+                .load(image)
                 .fitCenter()
                 .into(imageView);
-
     }
 }

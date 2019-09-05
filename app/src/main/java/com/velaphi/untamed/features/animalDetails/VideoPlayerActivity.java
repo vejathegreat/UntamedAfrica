@@ -22,6 +22,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
     private PlayerView playerView;
     private SimpleExoPlayer player;
 
+    private static final String CURRENT_POSITION = "CURRENT_POSITION";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +38,25 @@ public class VideoPlayerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putLong(CURRENT_POSITION, player.getCurrentPosition());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        long position = savedInstanceState.getLong(CURRENT_POSITION);
+        player.seekTo(position);
+    }
+
+
+
+    @Override
     protected void onStart() {
         super.onStart();
         player = ExoPlayerFactory.newSimpleInstance(this, new DefaultTrackSelector());
         playerView.setPlayer(player);
-
         DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this,
                 "untamed"));
 
@@ -51,10 +68,28 @@ public class VideoPlayerActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        playerView.setPlayer(null);
         player.release();
-        player = null;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        player.setPlayWhenReady(true);
+    }
+
+    private void releasePlayer() {
+        if (null != player) {
+            player.release();
+            player = null;
+        }
+    }
 
 }

@@ -44,4 +44,5 @@
     <string name="looks_like_you_don_t_have_any_favorite_animals">Looks like you don\'t have favorite Animals.</string>
     <string name="widget_title_key">widget_title_key</string>
     <string name="widget_fact_key">widget_fact_key</string>
+    <string name="favourite_fab">favourite fab</string>
 </resources>

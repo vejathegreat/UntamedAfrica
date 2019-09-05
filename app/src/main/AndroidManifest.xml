@@ -28,7 +28,6 @@
 
         <activity
             android:name=".features.animalDetails.VideoPlayerActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".features.getInvolved.FoundationDetailsActivity" />
 
@@ -41,7 +40,6 @@
             android:name=".features.animalDetails.ImageViewerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_media_view"
-            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".features.animalDetails.AnimalDetailsActivity"
