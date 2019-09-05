@@ -17,9 +17,11 @@ public class NewAppWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
         CharSequence widgetText = Prefs.loadDescription(context);
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        views.setTextViewText(R.id.title_text, widgetText);
+        views.setTextViewText(R.id.description_text, Prefs.loadTitle(context));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
