@@ -52,13 +52,10 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal_details);
         getBundles();
 
-        if (savedInstanceState == null) {
-            setupTabs();
-            setupToolbar();
-            setAnimalDetails();
-            setupFab();
-        }
-
+        setupTabs();
+        setupToolbar();
+        setAnimalDetails();
+        setupFab();
 
     }
 
