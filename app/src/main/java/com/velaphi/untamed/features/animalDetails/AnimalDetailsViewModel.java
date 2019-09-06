@@ -28,25 +28,7 @@ public class AnimalDetailsViewModel extends ViewModel implements UntamedAfricaCo
     }
 
     private void addToFavoriteAnimals(AnimalDetailsModel animalDetailsModel) {
-        animalRepository.insertFavoriteAnimal(animalDetailsModel).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Timber.d("onComplete - add animal");
-                    }
-
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Timber.e("OnError - add animal: ", e);
-                    }
-                });
+        animalRepository.insertAnimalToRoom(animalDetailsModel);
     }
 
 
