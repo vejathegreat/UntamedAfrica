@@ -13,6 +13,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -85,7 +86,7 @@ public class AnimalDetailsModel implements Parcelable {
 
     @ColumnInfo(name = "video_list")
     @TypeConverters(Converters.class)
-    private List<Video> videoList = null;
+    private ArrayList<Video> videoList = null;
 
     public static final Creator<AnimalDetailsModel> CREATOR = new Creator<AnimalDetailsModel>() {
         @Override
@@ -126,7 +127,7 @@ public class AnimalDetailsModel implements Parcelable {
         return CREATOR;
     }
 
-    public List<Video> getVideoList() {
+    public ArrayList<Video> getVideoList() {
         return videoList;
     }
 
@@ -251,7 +252,7 @@ public class AnimalDetailsModel implements Parcelable {
         this.facts = facts;
     }
 
-    public void setVideoList(List<Video> videoList) {
+    public void setVideoList(ArrayList<Video> videoList) {
         this.videoList = videoList;
     }
 

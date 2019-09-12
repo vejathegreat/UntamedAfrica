@@ -21,15 +21,17 @@ import com.velaphi.untamed.features.animalDetails.VideoPlayerActivity;
 import com.velaphi.untamed.features.animalDetails.models.Video;
 import com.velaphi.untamed.injection.GlideApp;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder> {
-    private List<Video> videoList;
+    private ArrayList<Video> videoList;
     private Context context;
+    private boolean showMin;
 
-    public VideosAdapter(Context context, List<Video> videoList) {
+    public VideosAdapter(Context context, ArrayList<Video> videoList, boolean showMin) {
         this.context = context;
         this.videoList = videoList;
+        this.showMin = showMin;
     }
 
     @NonNull
@@ -77,6 +79,11 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
+
+        if (showMin) {
+            return 3;
+        }
+
         return videoList.size();
     }
 
