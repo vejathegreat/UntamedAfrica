@@ -1,8 +1,6 @@
 package com.velaphi.untamed.repository.implementation;
 
 
-import android.os.AsyncTask;
-
 import androidx.lifecycle.LiveData;
 
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
@@ -21,8 +19,8 @@ public class AnimalRepositoryImpl implements AnimalRepository {
 
 
     @Override
-    public void insertAnimalToRoom(AnimalDetailsModel animalDetailsModel) {
-        new insertAsyncTask(animalsDatabase).execute(animalDetailsModel);
+    public Completable insertFavoriteAnimal(AnimalDetailsModel animalDetailsModel) {
+        return Completable.fromAction(() -> animalsDatabase.getAnimalsDao().insertFavoriteAnimal(animalDetailsModel));
     }
 
     @Override
@@ -33,20 +31,5 @@ public class AnimalRepositoryImpl implements AnimalRepository {
     @Override
     public LiveData<AnimalDetailsModel> isAnimalFavourite(String name) {
         return animalsDatabase.getAnimalsDao().isAnimalFavourite(name);
-    }
-
-    private static class insertAsyncTask extends AsyncTask<AnimalDetailsModel, Void, Void> {
-
-        AnimalsDatabase animalsDatabase;
-
-        public insertAsyncTask(AnimalsDatabase animalsDatabase) {
-            this.animalsDatabase = animalsDatabase;
-        }
-
-        @Override
-        protected Void doInBackground(AnimalDetailsModel... animalDetailsModels) {
-            animalsDatabase.getAnimalsDao().insertFavoriteAnimal(animalDetailsModels[0]);
-            return null;
-        }
     }
 }

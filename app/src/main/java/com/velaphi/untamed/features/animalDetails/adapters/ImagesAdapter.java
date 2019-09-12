@@ -24,13 +24,15 @@ import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder> {
     private List<String> imageList;
     private Context context;
+    private boolean showMin;
 
     public static String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static String EXTRA_URL = "EXTRA_URL";
 
-    public ImagesAdapter(Context context, List<String> imageList) {
+    public ImagesAdapter(Context context, List<String> imageList, boolean showMin) {
         this.context = context;
         this.imageList = imageList;
+        this.showMin = showMin;
     }
 
     @NonNull
@@ -71,6 +73,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
+
+        if (showMin) {
+            return 6;
+        }
+
         return imageList.size();
     }
 

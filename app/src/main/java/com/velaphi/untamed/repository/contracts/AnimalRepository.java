@@ -8,7 +8,7 @@ import io.reactivex.Completable;
 
 public interface AnimalRepository {
 
-    void insertAnimalToRoom(AnimalDetailsModel animalDetailsModel);
+    Completable insertFavoriteAnimal(AnimalDetailsModel animalDetailsModel);
 
     Completable removeFavoriteAnimal(AnimalDetailsModel animalDetailsModel);
 
