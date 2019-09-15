@@ -10,26 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.animalDetails.AllImagesActivity"></activity>
-
+        <activity android:name=".features.animalDetails.AllVideosActivity"></activity>
+        <activity android:name=".features.animalDetails.AllImagesActivity" />
         <activity
             android:name=".features.animalDetails.VideoPlayerActivity"
             android:theme="@style/FullscreenTheme" />
-
         <activity android:name=".features.getInvolved.FoundationDetailsActivity" />
-
         <activity android:name=".features.safaries.SafariDetailsActivity" />
         <activity
             android:name=".features.animalDetails.ImageViewerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_media_view"
             android:theme="@style/FullscreenTheme" />
-
         <activity
             android:name=".features.animalDetails.AnimalDetailsActivity"
             android:label="@string/title_activity_animal_details"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".features.animalList.AnimalListActivity" />
         <activity
             android:name=".features.main.MainActivity"
@@ -48,20 +44,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <receiver android:name=".features.widget.NewAppWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
-        </receiver>
-
-        <service
-            android:name=".features.widget.AppWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

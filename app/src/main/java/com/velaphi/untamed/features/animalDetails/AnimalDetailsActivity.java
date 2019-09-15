@@ -1,7 +1,6 @@
 package com.velaphi.untamed.features.animalDetails;
 
 import android.content.pm.ActivityInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,21 +24,16 @@ import com.google.android.material.tabs.TabLayout;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
-import com.velaphi.untamed.features.animalDetails.models.Fact;
-import com.velaphi.untamed.features.widget.AppWidgetService;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.injection.UntamedFactory;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 public class AnimalDetailsActivity extends AppCompatActivity {
 
     public final static String EXTRA_ANIMAL_DETAILS = "EXTRA_ANIMAL_DETAILS";
-    GetRandomFactTask getRandomFactTask = new GetRandomFactTask();
 
     boolean isExpanded = false;
     private AnimalDetailsModel animalDetailsModel;
@@ -220,23 +214,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             animalDetailsModel = extras.getParcelable(EXTRA_ANIMAL_DETAILS);
-            getRandomFactTask.execute(animalDetailsModel.getFacts());
         }
     }
 
-    public class GetRandomFactTask extends AsyncTask<List<Fact>, Void, Fact> {
-
-        @Override
-        protected void onPostExecute(Fact fact) {
-            AppWidgetService.updateWidget(AnimalDetailsActivity.this, fact);
-        }
-
-
-        @Override
-        protected Fact doInBackground(List<Fact>... lists) {
-            Random randomElement = new Random();
-            return animalDetailsModel.getFacts().get(randomElement.nextInt(animalDetailsModel.getFacts().size()));
-
-        }
-    }
 }

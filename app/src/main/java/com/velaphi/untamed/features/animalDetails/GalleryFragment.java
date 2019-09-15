@@ -21,10 +21,14 @@ import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 
 import java.util.ArrayList;
 
+import static com.velaphi.untamed.features.animalDetails.AllImagesActivity.ALL_IMAGES;
+import static com.velaphi.untamed.features.animalDetails.AllVideosActivity.ALL_VIDEOS;
+
 public class GalleryFragment extends Fragment {
 
     private AnimalDetailsModel animalDetailsModel;
-    public static String ALL_IMAGES = "ALL_IMAGES";
+    public static final int MINIMUM_IMAGES = 6;
+    public static final int MINIMUM_VIDEOS = 3;
 
     public GalleryFragment() {
     }
@@ -42,12 +46,12 @@ public class GalleryFragment extends Fragment {
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
         Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
-        if (animalDetailsModel.getVideoList().size() > 3) {
+        if (animalDetailsModel.getVideoList().size() > MINIMUM_IMAGES) {
             viewMoreVideosButton.setVisibility(View.VISIBLE);
             viewMoreVideosButton.setOnClickListener(v -> {
-                Intent viewAllVideosIntent = new Intent(getActivity(), AllImagesActivity.class);
-                viewAllVideosIntent.putParcelableArrayListExtra(ALL_IMAGES, animalDetailsModel.getVideoList());
-                startActivity(viewAllVideosIntent);
+                Intent viewAllVideos = new Intent(getActivity(), AllVideosActivity.class);
+                viewAllVideos.putParcelableArrayListExtra(ALL_VIDEOS, animalDetailsModel.getVideoList());
+                startActivity(viewAllVideos);
             });
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -63,11 +67,11 @@ public class GalleryFragment extends Fragment {
     private void setupImagesRecyclerView(View view) {
         RecyclerView imagesRecyclerView = view.findViewById(R.id.images_recyclerView);
         Button viewMoreImagesButton = view.findViewById(R.id.view_more_images);
-        if (animalDetailsModel.getImageList().size() > 6) {
+        if (animalDetailsModel.getImageList().size() > MINIMUM_VIDEOS) {
             viewMoreImagesButton.setVisibility(View.VISIBLE);
             viewMoreImagesButton.setOnClickListener(v -> {
                 Intent viewAllImagesIntent = new Intent(getActivity(), AllImagesActivity.class);
-                viewAllImagesIntent.putExtra(ALL_IMAGES, (ArrayList<String>) animalDetailsModel.getImageList());
+                viewAllImagesIntent.putStringArrayListExtra(ALL_IMAGES, (ArrayList<String>) animalDetailsModel.getImageList());
                 startActivity(viewAllImagesIntent);
             });
         }
