@@ -1,12 +1,14 @@
 package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.velaphi.untamed.R;
@@ -15,12 +17,15 @@ import com.velaphi.untamed.features.animalDetails.models.Info;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformationAdapter.ViewHolder> {
     private List<Info> basicInfoList = new ArrayList<>();
     private Context context;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public BasicInformationAdapter(Context context, List<Info> basicInfoList) {
         this.context = context;
+        basicInfoList.sort((i1, i2) -> Integer.compare(i1.getOrder(), i2.getOrder()));
         this.basicInfoList = basicInfoList;
     }
 
