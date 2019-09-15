@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
 
@@ -18,7 +19,7 @@ import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 
 public class ImageViewerActivity extends AppCompatActivity {
-    ImageView imageView;
+    PhotoView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,4 +55,6 @@ public class ImageViewerActivity extends AppCompatActivity {
                 .fitCenter()
                 .into(imageView);
     }
+
+
 }

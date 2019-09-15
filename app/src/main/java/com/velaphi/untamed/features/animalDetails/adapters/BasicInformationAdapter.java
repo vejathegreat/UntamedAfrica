@@ -13,7 +13,9 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.models.Info;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
 
 public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformationAdapter.ViewHolder> {
     private List<Info> basicInfoList = new ArrayList<>();
@@ -21,6 +23,7 @@ public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformati
 
     public BasicInformationAdapter(Context context, List<Info> basicInfoList) {
         this.context = context;
+        basicInfoList.sort(Comparator.comparing(Info::getOrder));
         this.basicInfoList = basicInfoList;
     }
 

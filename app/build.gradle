@@ -17,7 +17,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.velaphi.untamed"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -99,6 +99,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 repositories {
     mavenCentral()
