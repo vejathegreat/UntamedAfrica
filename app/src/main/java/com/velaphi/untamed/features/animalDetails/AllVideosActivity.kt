@@ -6,45 +6,47 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.velaphi.untamed.R
-import com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter
-import kotlinx.android.synthetic.main.activity_all_images.*
+import com.velaphi.untamed.features.animalDetails.adapters.VideosAdapter
+import com.velaphi.untamed.features.animalDetails.models.Video
+import kotlinx.android.synthetic.main.activity_all_videos.*
 import java.util.*
 
-class AllImagesActivity : AppCompatActivity() {
 
-    private lateinit var imagesAdapter: ImagesAdapter
+class AllVideosActivity : AppCompatActivity() {
+    private lateinit var videosAdapter: VideosAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_all_images)
+        setContentView(R.layout.activity_all_videos)
         val intent = intent
-        val imageList = intent.getStringArrayListExtra(ALL_IMAGES)
+        val videoList = intent.getParcelableArrayListExtra<Video>(ALL_VIDEOS)
 
         setupToolbar()
-        populateRecyclerView(imageList)
+        populateRecyclerView(videoList)
     }
+
 
     private fun setupToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = getString(R.string.images)
+        toolbar.title = getString(R.string.videos)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    private fun populateRecyclerView(imageList: ArrayList<String>?) {
-
+    private fun populateRecyclerView(videoList: ArrayList<Video>?) {
         val orientation: Int = resources.configuration.orientation
-        imagesAdapter = ImagesAdapter(this, imageList, false)
+        videosAdapter = VideosAdapter(this, videoList, false)
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT)
-            images_recyclerview.layoutManager = GridLayoutManager(this, PORTRAIT_SPAN_COUNT)
+            videos_recyclerview.layoutManager = LinearLayoutManager(this)
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE)
-            images_recyclerview.layoutManager = GridLayoutManager(this, LANDSCAPE_SPAN_COUNT)
+            videos_recyclerview.layoutManager = GridLayoutManager(this, LANDSCAPE_SPAN_COUNT)
 
-        images_recyclerview.itemAnimator = DefaultItemAnimator()
-        images_recyclerview.adapter = imagesAdapter
+        videos_recyclerview.itemAnimator = DefaultItemAnimator()
+        videos_recyclerview.adapter = videosAdapter
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -53,8 +55,7 @@ class AllImagesActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val ALL_IMAGES: String = "ALL_IMAGES"
-        private const val PORTRAIT_SPAN_COUNT: Int = 2
-        private const val LANDSCAPE_SPAN_COUNT: Int = 3
+        const val ALL_VIDEOS: String = "ALL_VIDEOS"
+        private const val LANDSCAPE_SPAN_COUNT: Int = 2
     }
 }
