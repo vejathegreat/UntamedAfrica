@@ -46,7 +46,7 @@ public class GalleryFragment extends Fragment {
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
         Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
-        if (animalDetailsModel.getVideoList().size() > MINIMUM_IMAGES) {
+        if (animalDetailsModel.getVideoList().size() > MINIMUM_VIDEOS) {
             viewMoreVideosButton.setVisibility(View.VISIBLE);
             viewMoreVideosButton.setOnClickListener(v -> {
                 Intent viewAllVideos = new Intent(getActivity(), AllVideosActivity.class);
@@ -67,7 +67,7 @@ public class GalleryFragment extends Fragment {
     private void setupImagesRecyclerView(View view) {
         RecyclerView imagesRecyclerView = view.findViewById(R.id.images_recyclerView);
         Button viewMoreImagesButton = view.findViewById(R.id.view_more_images);
-        if (animalDetailsModel.getImageList().size() > MINIMUM_VIDEOS) {
+        if (animalDetailsModel.getImageList().size() > MINIMUM_IMAGES) {
             viewMoreImagesButton.setVisibility(View.VISIBLE);
             viewMoreImagesButton.setOnClickListener(v -> {
                 Intent viewAllImagesIntent = new Intent(getActivity(), AllImagesActivity.class);

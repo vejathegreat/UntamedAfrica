@@ -68,4 +68,5 @@ public class Info implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
 }
