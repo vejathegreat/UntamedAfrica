@@ -46,6 +46,7 @@ public class GalleryFragment extends Fragment {
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
         Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
+
         if (animalDetailsModel.getVideoList().size() > MINIMUM_VIDEOS) {
             viewMoreVideosButton.setVisibility(View.VISIBLE);
             viewMoreVideosButton.setOnClickListener(v -> {

@@ -81,7 +81,12 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
     public int getItemCount() {
 
         if (showMin) {
-            return 3;
+            if (videoList != null && videoList.size() < 3) {
+                return videoList.size();
+            } else {
+                return 3;
+            }
+
         }
 
         return videoList.size();
