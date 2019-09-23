@@ -19,6 +19,7 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.BasicInformationAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.FactsAdapter;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.animalDetails.models.Predator;
 import com.velaphi.untamed.utils.CirclePagerIndicatorDecoration;
 
 public class FactsFragment extends Fragment {
@@ -62,8 +63,8 @@ public class FactsFragment extends Fragment {
 
     private void setPredators(View view) {
         final ChipGroup chipGroup = view.findViewById(R.id.predators_group);
-        for (String predator : animalDetailsModel.getPredators()) {
-            addChip(predator, chipGroup);
+        for (Predator predator : animalDetailsModel.getPredators()) {
+            addChip(predator.getName(), chipGroup);
         }
     }
 
@@ -75,6 +76,11 @@ public class FactsFragment extends Fragment {
 
         chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
         chip.setText(value);
+//        Drawable image = ImageOperations(context,ed.toString(),"image.jpg");
+//        ImageView imgView = new ImageView(context);
+//        imgView = (ImageView)findViewById(R.id.image1);
+//        imgView.setImageDrawable(image);
+//        chip.setChipDrawable();
         chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.transparent)));
         chip.setChipStrokeColorResource(R.color.colorPrimaryDark);
         chip.setChipStrokeWidth(1);
