@@ -39,7 +39,7 @@ public class Converters {
     }
 
     @TypeConverter
-    public static List<Info> toPredatorList(String predatorListJson) {
+    public static List<Predator> toPredatorList(String predatorListJson) {
         return new Gson().fromJson(predatorListJson, new TypeToken<List<Predator>>() {
         }.getType());
     }
