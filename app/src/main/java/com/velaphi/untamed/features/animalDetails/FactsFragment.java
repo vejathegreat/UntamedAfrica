@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.BasicInformationAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.FactsAdapter;
+import com.velaphi.untamed.features.animalDetails.adapters.PredatorsAdapter;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.utils.CirclePagerIndicatorDecoration;
 
@@ -61,32 +63,35 @@ public class FactsFragment extends Fragment {
 
 
     private void setPredators(View view) {
-        final ChipGroup chipGroup = view.findViewById(R.id.predators_group);
-        for (String predator : animalDetailsModel.getPredators()) {
-            addChip(predator, chipGroup);
+        RecyclerView predatorRecyclerView = view.findViewById(R.id.predators_recyclerView);
+        PredatorsAdapter predatorsAdapter = new PredatorsAdapter(animalDetailsModel.getPredators());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+        predatorRecyclerView.setLayoutManager(layoutManager);
+        predatorRecyclerView.setNestedScrollingEnabled(false);
+        predatorRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        predatorRecyclerView.setAdapter(predatorsAdapter);
+    }
+
+    private void setLocations(View view) {
+        final ChipGroup chipGroup = view.findViewById(R.id.locations_group);
+        for (String location : animalDetailsModel.getLocated()) {
+            addLocationChip(location, chipGroup);
         }
     }
 
-    private void addChip(String value, ChipGroup chipGroup) {
+    private void addLocationChip(String location, ChipGroup chipGroup) {
         final Chip chip = new Chip(getActivity());
         int paddingDp = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 8,
                 getResources().getDisplayMetrics());
 
         chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
-        chip.setText(value);
+        chip.setText(location);
         chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.transparent)));
         chip.setChipStrokeColorResource(R.color.colorPrimaryDark);
         chip.setChipStrokeWidth(1);
         chipGroup.addView(chip);
 
-    }
-
-    private void setLocations(View view) {
-        final ChipGroup chipGroup = view.findViewById(R.id.locations_group);
-        for (String location : animalDetailsModel.getLocated()) {
-            addChip(location, chipGroup);
-        }
     }
 
 }

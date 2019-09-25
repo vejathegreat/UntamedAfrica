@@ -66,7 +66,7 @@ public class AnimalDetailsModel implements Parcelable {
 
     @ColumnInfo(name = "predators")
     @TypeConverters(Converters.class)
-    private List<String> predators = null;
+    private List<Predator> predators = null;
 
     @ColumnInfo(name = "scientific_names")
     @TypeConverters(Converters.class)
@@ -88,17 +88,10 @@ public class AnimalDetailsModel implements Parcelable {
     @TypeConverters(Converters.class)
     private ArrayList<Video> videoList = null;
 
-    public static final Creator<AnimalDetailsModel> CREATOR = new Creator<AnimalDetailsModel>() {
-        @Override
-        public AnimalDetailsModel createFromParcel(Parcel in) {
-            return new AnimalDetailsModel(in);
-        }
 
-        @Override
-        public AnimalDetailsModel[] newArray(int size) {
-            return new AnimalDetailsModel[size];
-        }
-    };
+    public AnimalDetailsModel() {
+    }
+
 
     protected AnimalDetailsModel(Parcel in) {
         description = in.readParcelable(Description.class.getClassLoader());
@@ -111,21 +104,50 @@ public class AnimalDetailsModel implements Parcelable {
         level = in.readInt();
         name = in.readString();
         challenges = in.createTypedArrayList(Challenge.CREATOR);
-        predators = in.createStringArrayList();
+        predators = in.createTypedArrayList(Predator.CREATOR);
         scientificNames = in.createStringArrayList();
-        videoList = in.createTypedArrayList(Video.CREATOR);
         weight = in.createStringArrayList();
         quotable = in.readString();
         facts = in.createTypedArrayList(Fact.CREATOR);
+        videoList = in.createTypedArrayList(Video.CREATOR);
     }
 
-
-    public AnimalDetailsModel() {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(description, flags);
+        dest.writeParcelable(habitat, flags);
+        dest.writeString(image);
+        dest.writeStringList(imageList);
+        dest.writeTypedList(basicInfo);
+        dest.writeStringList(located);
+        dest.writeString(key);
+        dest.writeInt(level);
+        dest.writeString(name);
+        dest.writeTypedList(challenges);
+        dest.writeTypedList(predators);
+        dest.writeStringList(scientificNames);
+        dest.writeStringList(weight);
+        dest.writeString(quotable);
+        dest.writeTypedList(facts);
+        dest.writeTypedList(videoList);
     }
 
-    public static Creator<AnimalDetailsModel> getCREATOR() {
-        return CREATOR;
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    public static final Creator<AnimalDetailsModel> CREATOR = new Creator<AnimalDetailsModel>() {
+        @Override
+        public AnimalDetailsModel createFromParcel(Parcel in) {
+            return new AnimalDetailsModel(in);
+        }
+
+        @Override
+        public AnimalDetailsModel[] newArray(int size) {
+            return new AnimalDetailsModel[size];
+        }
+    };
 
     public ArrayList<Video> getVideoList() {
         return videoList;
@@ -164,7 +186,7 @@ public class AnimalDetailsModel implements Parcelable {
         return located;
     }
 
-    public List<String> getPredators() {
+    public List<Predator> getPredators() {
         return predators;
     }
 
@@ -232,7 +254,7 @@ public class AnimalDetailsModel implements Parcelable {
         this.challenges = challenges;
     }
 
-    public void setPredators(List<String> predators) {
+    public void setPredators(List<Predator> predators) {
         this.predators = predators;
     }
 
@@ -256,28 +278,5 @@ public class AnimalDetailsModel implements Parcelable {
         this.videoList = videoList;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(description, flags);
-        dest.writeParcelable(habitat, flags);
-        dest.writeString(image);
-        dest.writeStringList(imageList);
-        dest.writeTypedList(basicInfo);
-        dest.writeStringList(located);
-        dest.writeString(key);
-        dest.writeInt(level);
-        dest.writeString(name);
-        dest.writeTypedList(challenges);
-        dest.writeStringList(predators);
-        dest.writeStringList(scientificNames);
-        dest.writeTypedList(videoList);
-        dest.writeStringList(weight);
-        dest.writeString(quotable);
-        dest.writeTypedList(facts);
-    }
 }
