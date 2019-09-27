@@ -65,7 +65,7 @@ public class FactsFragment extends Fragment {
     private void setPredators(View view) {
         RecyclerView predatorRecyclerView = view.findViewById(R.id.predators_recyclerView);
         PredatorsAdapter predatorsAdapter = new PredatorsAdapter(animalDetailsModel.getPredators());
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         predatorRecyclerView.setLayoutManager(layoutManager);
         predatorRecyclerView.setNestedScrollingEnabled(false);
         predatorRecyclerView.setItemAnimator(new DefaultItemAnimator());
