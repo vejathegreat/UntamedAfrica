@@ -23,8 +23,7 @@ public class PredatorsAdapter extends RecyclerView.Adapter<PredatorsAdapter.View
     private List<Predator> predatorList;
     private Context context;
 
-    public PredatorsAdapter(List<Predator> predatorList) {
-        this.predatorList = predatorList;
+    public PredatorsAdapter() {
     }
 
     @NonNull
@@ -53,6 +52,11 @@ public class PredatorsAdapter extends RecyclerView.Adapter<PredatorsAdapter.View
     @Override
     public int getItemCount() {
         return predatorList.size();
+    }
+
+    public void setItems(List<Predator> predatorList) {
+        this.predatorList = predatorList;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

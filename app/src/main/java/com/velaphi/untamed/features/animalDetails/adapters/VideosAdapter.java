@@ -28,9 +28,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
     private Context context;
     private boolean showMin;
 
-    public VideosAdapter(Context context, ArrayList<Video> videoList, boolean showMin) {
+    public VideosAdapter(Context context, boolean showMin) {
         this.context = context;
-        this.videoList = videoList;
         this.showMin = showMin;
     }
 
@@ -90,6 +89,11 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
         }
 
         return videoList.size();
+    }
+
+    public void setItems(ArrayList<Video> videoList) {
+        this.videoList = videoList;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.VideosAdapter;
@@ -46,42 +47,50 @@ public class GalleryFragment extends Fragment {
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
         Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
+        MaterialCardView videosMaterialCardView = view.findViewById(R.id.videos_card_view);
 
-        if (animalDetailsModel.getVideoList().size() > MINIMUM_VIDEOS) {
-            viewMoreVideosButton.setVisibility(View.VISIBLE);
-            viewMoreVideosButton.setOnClickListener(v -> {
-                Intent viewAllVideos = new Intent(getActivity(), AllVideosActivity.class);
-                viewAllVideos.putParcelableArrayListExtra(ALL_VIDEOS, animalDetailsModel.getVideoList());
-                startActivity(viewAllVideos);
-            });
+        if (animalDetailsModel.getVideoList() != null && !animalDetailsModel.getVideoList().isEmpty()) {
+            videosMaterialCardView.setVisibility(View.VISIBLE);
+            if (animalDetailsModel.getVideoList().size() > MINIMUM_VIDEOS) {
+                viewMoreVideosButton.setVisibility(View.VISIBLE);
+                viewMoreVideosButton.setOnClickListener(v -> {
+                    Intent viewAllVideos = new Intent(getActivity(), AllVideosActivity.class);
+                    viewAllVideos.putParcelableArrayListExtra(ALL_VIDEOS, animalDetailsModel.getVideoList());
+                    startActivity(viewAllVideos);
+                });
+            }
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            VideosAdapter videosAdapter = new VideosAdapter(getActivity(), true);
+            videosRecyclerView.setLayoutManager(layoutManager);
+            videosRecyclerView.setNestedScrollingEnabled(false);
+            videosRecyclerView.setItemAnimator(new DefaultItemAnimator());
+            videosRecyclerView.addItemDecoration(new DividerItemDecoration(videosRecyclerView.getContext(),
+                    layoutManager.getOrientation()));
+            videosRecyclerView.setAdapter(videosAdapter);
+            videosAdapter.setItems(animalDetailsModel.getVideoList());
         }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        VideosAdapter videosAdapter = new VideosAdapter(getActivity(), animalDetailsModel.getVideoList(), true);
-        videosRecyclerView.setLayoutManager(layoutManager);
-        videosRecyclerView.setNestedScrollingEnabled(false);
-        videosRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        videosRecyclerView.addItemDecoration(new DividerItemDecoration(videosRecyclerView.getContext(),
-                layoutManager.getOrientation()));
-        videosRecyclerView.setAdapter(videosAdapter);
     }
 
     private void setupImagesRecyclerView(View view) {
         RecyclerView imagesRecyclerView = view.findViewById(R.id.images_recyclerView);
         Button viewMoreImagesButton = view.findViewById(R.id.view_more_images);
-        if (animalDetailsModel.getImageList().size() > MINIMUM_IMAGES) {
-            viewMoreImagesButton.setVisibility(View.VISIBLE);
-            viewMoreImagesButton.setOnClickListener(v -> {
-                Intent viewAllImagesIntent = new Intent(getActivity(), AllImagesActivity.class);
-                viewAllImagesIntent.putStringArrayListExtra(ALL_IMAGES, (ArrayList<String>) animalDetailsModel.getImageList());
-                startActivity(viewAllImagesIntent);
-            });
+        if (animalDetailsModel.getImageList() != null && !animalDetailsModel.getImageList().isEmpty()) {
+            if (animalDetailsModel.getImageList().size() > MINIMUM_IMAGES) {
+                viewMoreImagesButton.setVisibility(View.VISIBLE);
+                viewMoreImagesButton.setOnClickListener(v -> {
+                    Intent viewAllImagesIntent = new Intent(getActivity(), AllImagesActivity.class);
+                    viewAllImagesIntent.putStringArrayListExtra(ALL_IMAGES, (ArrayList<String>) animalDetailsModel.getImageList());
+                    startActivity(viewAllImagesIntent);
+                });
+            }
+            LinearLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+            ImagesAdapter imagesAdapter = new ImagesAdapter(getActivity(), true);
+            imagesRecyclerView.setLayoutManager(layoutManager);
+            imagesRecyclerView.setNestedScrollingEnabled(false);
+            imagesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+            imagesRecyclerView.setAdapter(imagesAdapter);
+            imagesAdapter.setItems(animalDetailsModel.getImageList());
         }
-        LinearLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        ImagesAdapter imagesAdapter = new ImagesAdapter(getActivity(), animalDetailsModel.getImageList(), true);
-        imagesRecyclerView.setLayoutManager(layoutManager);
-        imagesRecyclerView.setNestedScrollingEnabled(false);
-        imagesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        imagesRecyclerView.setAdapter(imagesAdapter);
     }
 
 }

@@ -29,9 +29,8 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     public static String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static String EXTRA_URL = "EXTRA_URL";
 
-    public ImagesAdapter(Context context, List<String> imageList, boolean showMin) {
+    public ImagesAdapter(Context context, boolean showMin) {
         this.context = context;
-        this.imageList = imageList;
         this.showMin = showMin;
     }
 
@@ -68,6 +67,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
             context.startActivity(intent);
         });
 
+    }
+
+    public void setItems(List<String> imageList) {
+        this.imageList = imageList;
+        notifyDataSetChanged();
     }
 
 

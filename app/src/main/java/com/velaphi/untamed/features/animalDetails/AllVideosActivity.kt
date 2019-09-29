@@ -38,7 +38,7 @@ class AllVideosActivity : AppCompatActivity() {
 
     private fun populateRecyclerView(videoList: ArrayList<Video>?) {
         val orientation: Int = resources.configuration.orientation
-        videosAdapter = VideosAdapter(this, videoList, false)
+        videosAdapter = VideosAdapter(this, false)
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT)
             videos_recyclerview.layoutManager = LinearLayoutManager(this)
@@ -47,6 +47,9 @@ class AllVideosActivity : AppCompatActivity() {
 
         videos_recyclerview.itemAnimator = DefaultItemAnimator()
         videos_recyclerview.adapter = videosAdapter
+        if (!videoList.isNullOrEmpty()) {
+            videosAdapter.setItems(videoList)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
