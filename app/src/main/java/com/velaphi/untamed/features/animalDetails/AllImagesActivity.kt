@@ -36,7 +36,7 @@ class AllImagesActivity : AppCompatActivity() {
     private fun populateRecyclerView(imageList: ArrayList<String>?) {
 
         val orientation: Int = resources.configuration.orientation
-        imagesAdapter = ImagesAdapter(this, imageList, false)
+        imagesAdapter = ImagesAdapter(this, false)
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT)
             images_recyclerview.layoutManager = GridLayoutManager(this, PORTRAIT_SPAN_COUNT)
@@ -45,6 +45,10 @@ class AllImagesActivity : AppCompatActivity() {
 
         images_recyclerview.itemAnimator = DefaultItemAnimator()
         images_recyclerview.adapter = imagesAdapter
+
+        if (!imageList.isNullOrEmpty()) {
+            imagesAdapter.setItems(imageList)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

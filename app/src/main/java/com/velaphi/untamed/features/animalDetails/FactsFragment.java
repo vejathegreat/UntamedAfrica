@@ -58,18 +58,25 @@ public class FactsFragment extends Fragment {
         factsRecyclerView.setItemAnimator(new DefaultItemAnimator());
         factsRecyclerView.setAdapter(factsAdapter);
         factsRecyclerView.addItemDecoration(new CirclePagerIndicatorDecoration());
-        factsAdapter.setItems(animalDetailsModel.getFacts());
+        if (animalDetailsModel.getFacts() != null && !animalDetailsModel.getFacts().isEmpty()) {
+            factsAdapter.setItems(animalDetailsModel.getFacts());
+        }
+
     }
 
 
     private void setPredators(View view) {
         RecyclerView predatorRecyclerView = view.findViewById(R.id.predators_recyclerView);
-        PredatorsAdapter predatorsAdapter = new PredatorsAdapter(animalDetailsModel.getPredators());
+        PredatorsAdapter predatorsAdapter = new PredatorsAdapter();
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         predatorRecyclerView.setLayoutManager(layoutManager);
         predatorRecyclerView.setNestedScrollingEnabled(false);
         predatorRecyclerView.setItemAnimator(new DefaultItemAnimator());
         predatorRecyclerView.setAdapter(predatorsAdapter);
+
+        if (animalDetailsModel.getPredators() != null && !animalDetailsModel.getPredators().isEmpty()) {
+            predatorsAdapter.setItems(animalDetailsModel.getPredators());
+        }
     }
 
     private void setLocations(View view) {

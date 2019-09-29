@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,7 +22,6 @@ import com.velaphi.untamed.features.getInvolved.GetInvolvedFragment;
 import com.velaphi.untamed.features.licenses.OpenSourceLicensesFragment;
 import com.velaphi.untamed.features.safaries.SafarisFragment;
 import com.velaphi.untamed.injection.UntamedFactory;
-import com.velaphi.untamed.utils.FragmentBackPressed;
 
 
 public class MainActivity extends AppCompatActivity
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         setupViewModel();
 
         if (savedInstanceState == null) {
@@ -106,12 +105,34 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    //BAD CODE
     @Override
     public void onBackPressed() {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (!(fragment instanceof FragmentBackPressed) || !((FragmentBackPressed) fragment).onBackPressed()) {
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if ((f instanceof FavoriteFragment)) {
+            navigateToCategories();
+
+        } else if (f instanceof AboutUsFragment) {
+            navigateToCategories();
+
+        } else if (f instanceof SafarisFragment) {
+            navigateToCategories();
+
+        } else if (f instanceof GetInvolvedFragment) {
+            navigateToCategories();
+
+        } else if (f instanceof OpenSourceLicensesFragment) {
+            navigateToCategories();
+
+        } else {
             super.onBackPressed();
         }
+
+    }
+
+    private void navigateToCategories() {
+        navigationViewModelNavigation.openCategories();
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 }
 
