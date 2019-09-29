@@ -68,6 +68,10 @@ public class AnimalDetailsModel implements Parcelable {
     @TypeConverters(Converters.class)
     private List<Predator> predators = null;
 
+    @ColumnInfo(name = "prey")
+    @TypeConverters(Converters.class)
+    private List<Prey> prey = null;
+
     @ColumnInfo(name = "scientific_names")
     @TypeConverters(Converters.class)
     private List<String> scientificNames = null;
@@ -92,7 +96,6 @@ public class AnimalDetailsModel implements Parcelable {
     public AnimalDetailsModel() {
     }
 
-
     protected AnimalDetailsModel(Parcel in) {
         description = in.readParcelable(Description.class.getClassLoader());
         habitat = in.readParcelable(Habitat.class.getClassLoader());
@@ -105,6 +108,7 @@ public class AnimalDetailsModel implements Parcelable {
         name = in.readString();
         challenges = in.createTypedArrayList(Challenge.CREATOR);
         predators = in.createTypedArrayList(Predator.CREATOR);
+        prey = in.createTypedArrayList(Prey.CREATOR);
         scientificNames = in.createStringArrayList();
         weight = in.createStringArrayList();
         quotable = in.readString();
@@ -125,6 +129,7 @@ public class AnimalDetailsModel implements Parcelable {
         dest.writeString(name);
         dest.writeTypedList(challenges);
         dest.writeTypedList(predators);
+        dest.writeTypedList(prey);
         dest.writeStringList(scientificNames);
         dest.writeStringList(weight);
         dest.writeString(quotable);
@@ -278,5 +283,11 @@ public class AnimalDetailsModel implements Parcelable {
         this.videoList = videoList;
     }
 
+    public List<Prey> getPrey() {
+        return prey;
+    }
 
+    public void setPrey(List<Prey> prey) {
+        this.prey = prey;
+    }
 }

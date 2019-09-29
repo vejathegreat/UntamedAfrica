@@ -28,8 +28,8 @@ import static com.velaphi.untamed.features.animalDetails.AllVideosActivity.ALL_V
 public class GalleryFragment extends Fragment {
 
     private AnimalDetailsModel animalDetailsModel;
-    public static final int MINIMUM_IMAGES = 6;
-    public static final int MINIMUM_VIDEOS = 3;
+    private static final int MINIMUM_IMAGES = 6;
+    private static final int MINIMUM_VIDEOS = 3;
 
     public GalleryFragment() {
     }

@@ -44,6 +44,17 @@ public class Converters {
         }.getType());
     }
 
+    @TypeConverter
+    public static List<Prey> toPreyList(String preyListJson) {
+        return new Gson().fromJson(preyListJson, new TypeToken<List<Prey>>() {
+        }.getType());
+    }
+
+    @TypeConverter
+    public static String fromPreyList(List<Prey> preyList) {
+        return new Gson().toJson(preyList);
+    }
+
 
     @TypeConverter
     public static String fromFactList(List<Fact> factList) {

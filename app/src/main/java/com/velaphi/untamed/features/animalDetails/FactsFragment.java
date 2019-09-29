@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.BasicInformationAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.FactsAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.PredatorsAdapter;
+import com.velaphi.untamed.features.animalDetails.adapters.PreyAdapter;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.utils.CirclePagerIndicatorDecoration;
 
@@ -32,6 +34,7 @@ public class FactsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_facts, container, false);
         animalDetailsModel = getArguments().getParcelable(AnimalDetailsActivity.EXTRA_ANIMAL_DETAILS);
         setPredators(view);
+        setPrey(view);
         setLocations(view);
         setFacts(view);
         setBasicInfo(view);
@@ -76,6 +79,22 @@ public class FactsFragment extends Fragment {
 
         if (animalDetailsModel.getPredators() != null && !animalDetailsModel.getPredators().isEmpty()) {
             predatorsAdapter.setItems(animalDetailsModel.getPredators());
+        }
+    }
+
+    private void setPrey(View view) {
+        RecyclerView preyRecyclerView = view.findViewById(R.id.prey_recyclerView);
+        MaterialCardView preyCardView = view.findViewById(R.id.prey_cardView);
+        PreyAdapter preyAdapter = new PreyAdapter();
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        preyRecyclerView.setLayoutManager(layoutManager);
+        preyRecyclerView.setNestedScrollingEnabled(false);
+        preyRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        preyRecyclerView.setAdapter(preyAdapter);
+
+        if (animalDetailsModel.getPrey() != null && !animalDetailsModel.getPrey().isEmpty()) {
+            preyCardView.setVisibility(View.VISIBLE);
+            preyAdapter.setItems(animalDetailsModel.getPrey());
         }
     }
 

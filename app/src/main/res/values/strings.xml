@@ -45,4 +45,5 @@
     <string name="widget_title_key">widget_title_key</string>
     <string name="widget_fact_key">widget_fact_key</string>
     <string name="favourite_fab">favourite fab</string>
+    <string name="prey">Prey</string>
 </resources>
