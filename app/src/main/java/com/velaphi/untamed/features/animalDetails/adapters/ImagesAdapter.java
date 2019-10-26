@@ -79,7 +79,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     public int getItemCount() {
 
         if (showMin) {
-            return 6;
+            if (imageList != null && imageList.size() >= 6) {
+                return 6;
+            } else {
+                return imageList.size();
+            }
         }
 
         return imageList.size();
