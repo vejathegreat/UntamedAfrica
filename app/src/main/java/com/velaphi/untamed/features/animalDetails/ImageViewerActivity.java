@@ -14,28 +14,39 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
 
+import java.util.List;
+
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_IMAGE_LIST;
+import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_POSITION;
 import static com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter.EXTRA_URL;
 import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 
 
 public class ImageViewerActivity extends AppCompatActivity {
     PhotoView imageView;
+    private int imagePosition;
+    private List<String> imageList;
+    private String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_media_view);
-        ImageView imageView = findViewById(R.id.image_view);
+//        ImageView imageView = findViewById(R.id.image_view);
 
-        String url = getIntent().getStringExtra(EXTRA_URL);
-        if (savedInstanceState == null) {
-            RequestOptions options = new RequestOptions()
-                    .error(R.color.black_overlay)
-                    .placeholder(R.color.black_overlay)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .priority(Priority.HIGH);
-            GlideApp.with(this).load(getImageFromStorage(url)).apply(options).fitCenter().into(imageView);
-        }
+        url = getIntent().getStringExtra(EXTRA_URL);
+        imageList = getIntent().getStringArrayListExtra(EXTRA_IMAGE_LIST);
+        imagePosition = getIntent().getIntExtra(EXTRA_POSITION, 0);
+
+//        if (savedInstanceState == null) {
+//            RequestOptions options = new RequestOptions()
+//                    .error(R.color.black_overlay)
+//                    .placeholder(R.color.black_overlay)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .priority(Priority.HIGH);
+//            GlideApp.with(this).load(getImageFromStorage(url)).apply(options).fitCenter().into(imageView);
+//        }
     }
 
     @Override
@@ -49,11 +60,11 @@ public class ImageViewerActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Bitmap image = savedInstanceState.getParcelable("image");
-        GlideApp.with(this)
-                .load(image)
-                .fitCenter()
-                .into(imageView);
+//        Bitmap image = savedInstanceState.getParcelable("image");
+//        GlideApp.with(this)
+//                .load(image)
+//                .fitCenter()
+//                .into(imageView);
     }
 
 

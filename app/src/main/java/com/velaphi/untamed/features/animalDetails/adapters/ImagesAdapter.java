@@ -17,6 +17,7 @@ import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.ImageViewerActivity;
 import com.velaphi.untamed.injection.GlideApp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
@@ -28,6 +29,9 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     public static String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static String EXTRA_URL = "EXTRA_URL";
+    public static String EXTRA_POSITION = "EXTRA_POSITION";
+    public static String EXTRA_IMAGE_LIST = "EXTRA_IMAGE_LIST";
+    private int position;
 
     public ImagesAdapter(Context context, boolean showMin) {
         this.context = context;
@@ -64,6 +68,8 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
             Intent intent = new Intent(context, ImageViewerActivity.class);
             intent.putExtra(EXTRA_URL, imageUrl);
             intent.putExtra(EXTRA_IMAGE, true);
+            intent.putStringArrayListExtra(EXTRA_IMAGE_LIST, (ArrayList<String>) imageList);
+            intent.putExtra(EXTRA_POSITION, position);
             context.startActivity(intent);
         });
 
