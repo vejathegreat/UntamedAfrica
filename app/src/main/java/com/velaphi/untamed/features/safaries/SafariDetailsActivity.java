@@ -12,10 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
 import com.velaphi.untamed.utils.CirclePagerIndicatorDecoration;
+import com.velaphi.untamed.utils.StartSnapHelper;
 
 public class SafariDetailsActivity extends AppCompatActivity {
 
@@ -43,10 +45,11 @@ public class SafariDetailsActivity extends AppCompatActivity {
         RecyclerView safariImagesRecyclerView = findViewById(R.id.images_recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         SafariImagesAdapter safariImagesAdapter = new SafariImagesAdapter();
-
         safariImagesRecyclerView.setLayoutManager(layoutManager);
         safariImagesRecyclerView.setNestedScrollingEnabled(false);
         safariImagesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        SnapHelper startSnapHelper = new StartSnapHelper();
+        startSnapHelper.attachToRecyclerView(safariImagesRecyclerView);
         safariImagesRecyclerView.setAdapter(safariImagesAdapter);
         safariImagesRecyclerView.addItemDecoration(new CirclePagerIndicatorDecoration());
         safariImagesAdapter.setItems(safariModel.getImageList());

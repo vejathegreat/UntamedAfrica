@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,12 +14,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.google.android.material.card.MaterialCardView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.ImagesAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.VideosAdapter;
 import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.utils.StartSnapHelper;
 
 import java.util.ArrayList;
 
@@ -47,10 +50,10 @@ public class GalleryFragment extends Fragment {
     private void setupVideosRecyclerView(View view) {
         RecyclerView videosRecyclerView = view.findViewById(R.id.videos_recyclerView);
         Button viewMoreVideosButton = view.findViewById(R.id.view_more_videos);
-        MaterialCardView videosMaterialCardView = view.findViewById(R.id.videos_card_view);
+        LinearLayout videosLayout = view.findViewById(R.id.videos_layout);
 
         if (animalDetailsModel.getVideoList() != null && !animalDetailsModel.getVideoList().isEmpty()) {
-            videosMaterialCardView.setVisibility(View.VISIBLE);
+            videosLayout.setVisibility(View.VISIBLE);
             if (animalDetailsModel.getVideoList().size() > MINIMUM_VIDEOS) {
                 viewMoreVideosButton.setVisibility(View.VISIBLE);
                 viewMoreVideosButton.setOnClickListener(v -> {
@@ -59,13 +62,14 @@ public class GalleryFragment extends Fragment {
                     startActivity(viewAllVideos);
                 });
             }
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
             VideosAdapter videosAdapter = new VideosAdapter(getActivity(), true);
+
             videosRecyclerView.setLayoutManager(layoutManager);
             videosRecyclerView.setNestedScrollingEnabled(false);
             videosRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            videosRecyclerView.addItemDecoration(new DividerItemDecoration(videosRecyclerView.getContext(),
-                    layoutManager.getOrientation()));
+            SnapHelper startSnapHelper = new StartSnapHelper();
+            startSnapHelper.attachToRecyclerView(videosRecyclerView);
             videosRecyclerView.setAdapter(videosAdapter);
             videosAdapter.setItems(animalDetailsModel.getVideoList());
         }

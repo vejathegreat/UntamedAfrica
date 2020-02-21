@@ -25,6 +25,7 @@ import static com.velaphi.untamed.utils.AppUtil.getImageFromStorage;
 public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.ViewHolder> {
 
     private List<FoundationModel> foundationModelList = new ArrayList<>();
+    private RequestOptions options;
 
     public FoundationsAdapter() {
     }
@@ -42,11 +43,12 @@ public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FoundationModel foundationModel = foundationModelList.get(position);
         holder.foundationNameTexView.setText(foundationModel.getName());
+        holder.foundationMissionTexView.setText(foundationModel.getMission());
 
         Context context = holder.itemView.getContext();
         RequestOptions options = new RequestOptions()
-                .error(R.color.colorAccent)
-                .placeholder(R.color.colorAccent)
+                .error(R.color.white)
+                .placeholder(R.color.white)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
@@ -80,11 +82,13 @@ public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView foundationImageView;
         TextView foundationNameTexView;
+        TextView foundationMissionTexView;
 
         ViewHolder(View view) {
             super(view);
             foundationImageView = view.findViewById(R.id.foundation_logo_imageView);
             foundationNameTexView = view.findViewById(R.id.foundation_name_textView);
+            foundationMissionTexView = view.findViewById(R.id.foundation_mission_textView);
         }
     }
 }

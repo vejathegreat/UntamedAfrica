@@ -1,5 +1,6 @@
 package com.velaphi.untamed.utils;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -66,8 +67,9 @@ public class CirclePagerIndicatorDecoration extends RecyclerView.ItemDecoration 
         drawHighlights(c, indicatorStartX, indicatorPosY, activePosition, progress);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void drawInactiveIndicators(Canvas c, float indicatorStartX, float indicatorPosY, int itemCount) {
-        int colorInactive = R.color.colorAccent;
+        int colorInactive = R.color.colorPrimary;
         mPaint.setColor(colorInactive);
 
 // width of item indicator including padding

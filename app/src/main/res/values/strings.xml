@@ -39,11 +39,12 @@
     <string name="static_map_url">https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=2048x2048&amp;markers=color:red|</string>
     <string name="more_info">More Info</string>
     <string name="header_text">This is a list of organizations leading in wildlife conservation and endangered species you can choose to be part of to assist in their cause.</string>
-    <string name="i_want_to_volunteer_or_contribute_to_this_cause">Volunteer</string>
+    <string name="i_want_to_volunteer_or_contribute_to_this_cause">I want to volunteer</string>
     <string name="website">Website</string>
     <string name="looks_like_you_don_t_have_any_favorite_animals">Looks like you don\'t have favorite Animals.</string>
     <string name="widget_title_key">widget_title_key</string>
     <string name="widget_fact_key">widget_fact_key</string>
     <string name="favourite_fab">favourite fab</string>
     <string name="prey">Prey</string>
+    <string name="connect">Connect with us</string>
 </resources>
