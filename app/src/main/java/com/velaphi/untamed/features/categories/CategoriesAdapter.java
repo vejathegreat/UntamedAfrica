@@ -47,13 +47,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         holder.description.setText(categoryModel.getDescription());
 
         RequestOptions options = new RequestOptions()
-                .error(R.color.colorAccent)
-                .placeholder(R.color.colorAccent)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
         GlideApp.with(context)
                 .load(getImageFromStorage(categoryModel.getImage()))
+                .thumbnail(0.1f)
                 .apply(options)
                 .centerCrop()
                 .into(holder.bannerImage);

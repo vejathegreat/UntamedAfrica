@@ -24,7 +24,6 @@ public class SafariDetailsActivity extends AppCompatActivity {
     public final static String EXTRA_SAFARI_DETAILS = "EXTRA_SAFARI_DETAILS";
     private TextView summaryTextView;
     private TextView detailsTextView;
-    private TextView geoPointTextView;
     private TextView addressTextView;
     private ImageView mapImageView;
     private SafariModel safariModel;
@@ -75,14 +74,12 @@ public class SafariDetailsActivity extends AppCompatActivity {
                 .load(url)
                 .centerCrop()
                 .into(mapImageView);
-        geoPointTextView.setText(safariModel.getCoordinates().toString());
 
     }
 
     private void setupViews() {
         summaryTextView = findViewById(R.id.summary_textview);
         detailsTextView = findViewById(R.id.details_textView);
-        geoPointTextView = findViewById(R.id.geopoint_textview);
         addressTextView = findViewById(R.id.address_textview);
         mapImageView = findViewById(R.id.safari_map_imageview);
         Button moreInfoButton = findViewById(R.id.more_info);
