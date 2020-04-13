@@ -3,6 +3,7 @@ package com.velaphi.untamed.features.getInvolved;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.card.MaterialCardView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.injection.GlideApp;
 
@@ -34,18 +36,14 @@ public class FoundationDetailsActivity extends AppCompatActivity {
     }
 
     private void setupView() {
-        TextView visitUsTextView = findViewById(R.id.visit_us_textView);
+        MaterialCardView volunteerCardView = findViewById(R.id.volunteer_cardView);
         TextView contentTextView = findViewById(R.id.content_textView);
         contentTextView.setText(foundationModel.getContent());
         TextView tagLineTextView = findViewById(R.id.tag_textView);
         tagLineTextView.setText(foundationModel.getTagLine());
         ImageView foundationImageView = findViewById(R.id.foundation_logo_imageView);
-        TextView helpTextview = findViewById(R.id.help_textview);
-        helpTextview.setOnClickListener(v -> {
-            openWeb(foundationModel.getHelpUrl());
-        });
-
-        visitUsTextView.setOnClickListener(v -> openWeb(foundationModel.getMainSite()));
+//        visitUsTextView.setOnClickListener(v -> openWeb(foundationModel.getMainSite()));
+        volunteerCardView.setOnClickListener(v -> openWeb(foundationModel.getHelpUrl()));
 
         RequestOptions options = new RequestOptions()
                 .error(R.color.colorAccent)

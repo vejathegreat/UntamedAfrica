@@ -36,7 +36,7 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Fact fact = factList.get(position);
         holder.descriptionTextView.setText(fact.getDescription());
-        holder.titleTextView.setText(fact.getTitle());
+//        holder.titleTextView.setText(fact.getTitle());
     }
 
     public void setItems(List<Fact> factList) {
@@ -50,12 +50,12 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
+//        TextView titleTextView;
         TextView descriptionTextView;
 
         ViewHolder(View view) {
             super(view);
-            titleTextView = view.findViewById(R.id.title_textview);
+//            titleTextView = view.findViewById(R.id.title_textview);
             descriptionTextView = view.findViewById(R.id.description_textview);
         }
     }

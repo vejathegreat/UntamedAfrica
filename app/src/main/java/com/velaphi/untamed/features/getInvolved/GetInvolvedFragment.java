@@ -18,7 +18,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.velaphi.untamed.R;
@@ -26,6 +28,8 @@ import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
+
+import static android.widget.LinearLayout.VERTICAL;
 
 public class GetInvolvedFragment extends Fragment {
 
@@ -56,12 +60,13 @@ public class GetInvolvedFragment extends Fragment {
 
     private void setupRecyclerView(View view) {
         RecyclerView getInvolvedRecyclerView = view.findViewById(R.id.recyclerview_generic);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         foundationsAdapter = new FoundationsAdapter();
         getInvolvedRecyclerView.setLayoutManager(layoutManager);
         getInvolvedRecyclerView.setNestedScrollingEnabled(false);
         getInvolvedRecyclerView.setItemAnimator(new DefaultItemAnimator());
         getInvolvedRecyclerView.setAdapter(foundationsAdapter);
+//        getInvolvedRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), VERTICAL));
 
     }
 
