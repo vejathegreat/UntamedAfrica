@@ -1,6 +1,7 @@
 package com.velaphi.untamed.features.animalDetails.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,11 @@ public class BasicInformationAdapter extends RecyclerView.Adapter<BasicInformati
         Info info = basicInfoList.get(position);
         holder.descriptionTextView.setText(info.getDescription());
         holder.titleTextView.setText(info.getTitle());
+        if (position % 2 == 1) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else{
+            holder.itemView.setBackgroundColor(Color.parseColor("#118d6e63"));
+        }
     }
 
 

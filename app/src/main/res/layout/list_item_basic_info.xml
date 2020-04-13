@@ -9,17 +9,21 @@
         android:id="@+id/title_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
+        android:layout_marginBottom="8dp"
+        android:textAllCaps="true"
+        android:textSize="14sp"
         android:textStyle="bold"
+        android:layout_margin="8dp"
         tools:text="@string/scientific_names" />
 
     <TextView
         android:id="@+id/description_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="14sp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         tools:text="@tools:sample/lorem" />
 
 </LinearLayout>

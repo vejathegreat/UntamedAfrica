@@ -14,7 +14,6 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.velaphi.untamed.R;
-import com.velaphi.untamed.features.animalDetails.ImageViewerActivity;
 import com.velaphi.untamed.injection.GlideApp;
 
 import java.util.ArrayList;
@@ -55,11 +54,11 @@ public class SafariImagesAdapter extends RecyclerView.Adapter<SafariImagesAdapte
                 .into(holder.safariImageView);
 
         holder.safariImageView.setOnClickListener(v -> {
-            Context context = holder.itemView.getContext();
-            Intent intent = new Intent(context, ImageViewerActivity.class);
-            intent.putExtra(EXTRA_URL, imageUrl);
-            intent.putExtra(EXTRA_IMAGE, true);
-            context.startActivity(intent);
+//            Context context = holder.itemView.getContext();
+//            Intent intent = new Intent(context, ImageViewerActivity.class);
+//            intent.putExtra(EXTRA_URL, imageUrl);
+//            intent.putExtra(EXTRA_IMAGE, true);
+//            context.startActivity(intent);
         });
 
     }
