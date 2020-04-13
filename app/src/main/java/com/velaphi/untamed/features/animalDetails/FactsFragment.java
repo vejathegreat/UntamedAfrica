@@ -1,27 +1,22 @@
 package com.velaphi.untamed.features.animalDetails;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.features.animalDetails.adapters.BasicInformationAdapter;
+import com.velaphi.untamed.features.animalDetails.adapters.CountriesAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.FactsAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.PredatorsAdapter;
 import com.velaphi.untamed.features.animalDetails.adapters.PreyAdapter;
@@ -109,25 +104,19 @@ public class FactsFragment extends Fragment {
     }
 
     private void setLocations(View view) {
-        final ChipGroup chipGroup = view.findViewById(R.id.locations_group);
-        for (String location : animalDetailsModel.getLocated()) {
-            addLocationChip(location, chipGroup);
+        String name = getString(R.string.locations, animalDetailsModel.getName());
+        RecyclerView countriesRecyclerView = view.findViewById(R.id.countries_recyclerView);
+        TextView locationHeaderTextView = view.findViewById(R.id.habitat_header_textview);
+        locationHeaderTextView.setText(name);
+        if(animalDetailsModel.getLocated() != null && !animalDetailsModel.getLocated().isEmpty()){
+
+            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+            CountriesAdapter countriesAdapter = new CountriesAdapter(animalDetailsModel.getLocated());
+            countriesRecyclerView.setLayoutManager(layoutManager);
+            countriesRecyclerView.setNestedScrollingEnabled(false);
+            countriesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+            countriesRecyclerView.setAdapter(countriesAdapter);
         }
-    }
-
-    private void addLocationChip(String location, ChipGroup chipGroup) {
-        final Chip chip = new Chip(getActivity());
-        int paddingDp = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 8,
-                getResources().getDisplayMetrics());
-
-        chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
-        chip.setText(location);
-        chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.transparent)));
-        chip.setChipStrokeColorResource(R.color.colorPrimaryDark);
-        chip.setChipStrokeWidth(1);
-        chipGroup.addView(chip);
 
     }
-
 }

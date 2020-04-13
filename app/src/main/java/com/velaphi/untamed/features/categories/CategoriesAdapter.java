@@ -52,6 +52,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         GlideApp.with(context)
                 .load(getImageFromStorage(categoryModel.getImage()))
+                .placeholder(R.color.colorAccent)
                 .thumbnail(0.1f)
                 .apply(options)
                 .centerCrop()

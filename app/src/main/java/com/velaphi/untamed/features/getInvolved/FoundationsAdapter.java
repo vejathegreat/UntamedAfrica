@@ -47,8 +47,8 @@ public class FoundationsAdapter extends RecyclerView.Adapter<FoundationsAdapter.
 
         Context context = holder.itemView.getContext();
         RequestOptions options = new RequestOptions()
-                .error(R.color.white)
-                .placeholder(R.color.white)
+                .error(R.color.colorAccent)
+                .placeholder(R.color.colorAccent)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 

@@ -22,7 +22,7 @@ import com.velaphi.untamed.injection.UntamedFactory;
 
 import java.util.Objects;
 
-import butterknife.ButterKnife;
+
 
 public class AnimalListActivity extends AppCompatActivity {
 
@@ -40,7 +40,6 @@ public class AnimalListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_list);
-        ButterKnife.bind(this);
         getBundles();
         setupViews();
         setupToolbar();

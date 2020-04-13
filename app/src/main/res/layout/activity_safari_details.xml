@@ -126,7 +126,5 @@
                 android:text="@string/more_info" />
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </LinearLayout>

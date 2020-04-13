@@ -9,9 +9,9 @@
     <string name="menu_involved">Get Involved</string>
     <string name="menu_announcement">Announcements</string>
     <string name="menu_about">About Us</string>
-    <string name="menu_contributors">Open Source Licenses</string>
+    <string name="menu_contributors">Open Source Licences</string>
     <string name="categories_screen_title">Categories</string>
-    <string name="licences_title">Open source licenses</string>
+    <string name="licences_title">Open source licences</string>
     <string name="safaris_title">Safaris</string>
     <string name="get_involved_title">Get Involved</string>
     <string name="try_again">Try Again</string>
@@ -21,7 +21,7 @@
     <string name="scientific_names">Scientific Names:</string>
     <string name="habitat">Where do they live? </string>
     <string name="predators">Predators</string>
-    <string name="locations">Countries where you can find this species in their natural habitat</string>
+    <string name="locations">Countries where you can still find %1$s in their natural environment.</string>
     <string name="facts">Facts</string>
     <string name="gallery">Gallery</string>
     <string name="other">Other</string>
