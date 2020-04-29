@@ -67,6 +67,7 @@ public class AnimalDetailsViewModel extends ViewModel implements UntamedAfricaCo
                         Timber.d("onComplete - deleted animal");
                     }
 
+                    @SuppressLint("TimberArgCount")
                     @Override
                     public void onError(Throwable e) {
                         Timber.e("OnError - deleted animal: ", e);
