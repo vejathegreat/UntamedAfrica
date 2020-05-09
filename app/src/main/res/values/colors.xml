@@ -3,6 +3,8 @@
     <color name="colorPrimary">#63744D</color>
     <color name="colorPrimaryDark">#36441F</color>
     <color name="colorAccent">#A5B157</color>
-    <color name="cardBackground">#A9AF8C</color>
+    <color name="cardBackground">#D4D5CE</color>
+    <color name="primaryTextColor">#B3B5AA</color>
     <color name="black_overlay">#66000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
