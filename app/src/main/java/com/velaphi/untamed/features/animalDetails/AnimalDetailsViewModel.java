@@ -1,7 +1,5 @@
 package com.velaphi.untamed.features.animalDetails;
 
-import android.annotation.SuppressLint;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -44,7 +42,6 @@ public class AnimalDetailsViewModel extends ViewModel implements UntamedAfricaCo
                     }
 
 
-                    @SuppressLint("TimberArgCount")
                     @Override
                     public void onError(Throwable e) {
                         Timber.e("OnError - add animal: ", e);
@@ -67,7 +64,6 @@ public class AnimalDetailsViewModel extends ViewModel implements UntamedAfricaCo
                         Timber.d("onComplete - deleted animal");
                     }
 
-                    @SuppressLint("TimberArgCount")
                     @Override
                     public void onError(Throwable e) {
                         Timber.e("OnError - deleted animal: ", e);

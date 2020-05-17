@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wild Africa</string>
+    <string name="app_name">Untamed Africa</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="menu_categories">Categories</string>
@@ -30,22 +30,21 @@
     <string name="read_more">READ MORE</string>
     <string name="view_all">View All</string>
     <string name="read_less">SEE LESS</string>
+    <string name="quick_facts">Quick Facts</string>
     <string name="basic_information">Basic Information</string>
+    <string name="challenges">Challenges</string>
     <string name="title_activity_media_view">MediaViewActivity</string>
     <string name="google_maps">maps</string>
+    <string name="address">Address: </string>
     <string name="static_map_url">https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=2048x2048&amp;markers=color:red|</string>
     <string name="more_info">More Info</string>
     <string name="header_text">This is a list of organizations leading in wildlife conservation and endangered species you can choose to be part of to assist in their cause.</string>
     <string name="i_want_to_volunteer_or_contribute_to_this_cause">I want to volunteer</string>
+    <string name="website">Website</string>
     <string name="looks_like_you_don_t_have_any_favorite_animals">Looks like you don\'t have favorite Animals.</string>
+    <string name="widget_title_key">widget_title_key</string>
+    <string name="widget_fact_key">widget_fact_key</string>
     <string name="favourite_fab">favourite fab</string>
     <string name="prey">Prey</string>
     <string name="connect">Connect with us</string>
-    <string name="filter">Show by By:</string>
-    <string name="title_home">Home</string>
-    <string name="title_animals">Animals</string>
-    <string name="title_favourites">Favourites</string>
-    <string name="title_more">More</string>
-    <string name="title_safaris">Safaris</string>
-    <string name="filter_image">Filter Image</string>
 </resources>

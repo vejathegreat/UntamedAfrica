@@ -20,7 +20,7 @@
 
     <style name="ToolbarTitleStyle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/puritan</item>
-        <item name="android:textStyle">italic</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
