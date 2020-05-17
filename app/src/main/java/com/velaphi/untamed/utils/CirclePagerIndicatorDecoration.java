@@ -84,6 +84,7 @@ public class CirclePagerIndicatorDecoration extends RecyclerView.ItemDecoration 
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private void drawHighlights(Canvas c, float indicatorStartX, float indicatorPosY,
                                 int highlightPosition, float progress) {
         int colorActive = R.color.colorPrimaryDark;

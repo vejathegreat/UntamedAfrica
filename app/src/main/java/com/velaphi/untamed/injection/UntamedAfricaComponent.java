@@ -6,6 +6,7 @@ import com.velaphi.untamed.features.animalDetails.AnimalDetailsViewModel;
 import com.velaphi.untamed.features.animalList.AnimalListViewModel;
 import com.velaphi.untamed.features.categories.CategoriesViewModel;
 import com.velaphi.untamed.features.getInvolved.GetInvolvedViewModel;
+import com.velaphi.untamed.features.home.HomeViewModel;
 import com.velaphi.untamed.features.licenses.LicencesViewModel;
 import com.velaphi.untamed.features.main.NavigationDrawerViewModel;
 import com.velaphi.untamed.features.safaries.SafarisViewModel;
@@ -22,6 +23,7 @@ public interface UntamedAfricaComponent {
     void inject(NavigationDrawerViewModel navigationDrawerViewModel);
     void inject(AnimalListViewModel animalListViewModel);
     void inject(LicencesViewModel licencesViewModel);
+    void inject(HomeViewModel homeViewModel);
     void inject(GetInvolvedViewModel getInvolvedViewModel);
     void inject(SafarisViewModel safarisViewModel);
     void inject(AboutUsViewModel aboutUsViewModel);

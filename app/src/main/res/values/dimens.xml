@@ -8,6 +8,21 @@
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
-    <dimen name="widget_margin">8dp</dimen>
     <dimen name="icon_size">25dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+    <dimen name="title">18sp</dimen>
+    <dimen name="sub_text">14sp</dimen>
+
+    <dimen name="home_image_height">180dp</dimen>
+    <dimen name="home_image_half_height">90dp</dimen>
+    <dimen name="general_margin">4dp</dimen>
+    <dimen name="general_half_margin">2dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
 </resources>

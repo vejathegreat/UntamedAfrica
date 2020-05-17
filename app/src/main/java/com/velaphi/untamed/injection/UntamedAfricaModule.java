@@ -14,7 +14,9 @@ import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.AnimalRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
 import com.velaphi.untamed.repository.contracts.FavouritesRepository;
+import com.velaphi.untamed.repository.contracts.FilterRepository;
 import com.velaphi.untamed.repository.contracts.GetInvolvedRepository;
+import com.velaphi.untamed.repository.contracts.HomeRepository;
 import com.velaphi.untamed.repository.contracts.LicensesRepository;
 import com.velaphi.untamed.repository.contracts.SafarisRepository;
 import com.velaphi.untamed.repository.implementation.AboutUsRepositoryImpl;
@@ -22,7 +24,9 @@ import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.AnimalRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.FavouritesRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.FilterRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.GetInvolvedRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.HomeRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.LicensesRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.SafarisRepositoryImpl;
 import com.velaphi.untamed.utils.Analytics;
@@ -93,6 +97,18 @@ public class UntamedAfricaModule {
     @Singleton
     AnimalRepository provideAnimalRepository(AnimalsDatabase animalsDatabase) {
         return new AnimalRepositoryImpl(animalsDatabase);
+    }
+
+    @Provides
+    @Singleton
+    FilterRepository provideFilterRepository(FirebaseFirestore firebaseFirestore) {
+        return new FilterRepositoryImpl(firebaseFirestore);
+    }
+
+    @Provides
+    @Singleton
+    HomeRepository provideHomeRepository(FirebaseFirestore firebaseFirestore) {
+        return new HomeRepositoryImpl(firebaseFirestore);
     }
 
     @Provides
