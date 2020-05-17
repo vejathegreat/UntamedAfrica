@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.velaphi.untamed.injection.UntamedAfricaComponent
 import com.velaphi.untamed.repository.contracts.FilterRepository
+import com.velaphi.untamed.repository.contracts.HomeRepository
 import javax.inject.Inject
 
 class HomeViewModel : ViewModel(), UntamedAfricaComponent.Injectable {
@@ -11,8 +12,13 @@ class HomeViewModel : ViewModel(), UntamedAfricaComponent.Injectable {
     @Inject
     lateinit var filterRepository: FilterRepository
 
-    private val filterItemListData: MutableLiveData<List<Filter>> = MutableLiveData()
+    @Inject
+    lateinit var homeRepository: HomeRepository
+
+    private val filterModelItemListData: MutableLiveData<List<FilterModel>> = MutableLiveData()
+    private val homeItemListData: MutableLiveData<ArrayList<HomeModel>> = MutableLiveData()
     private val exceptionStatus: MutableLiveData<Exception?> = MutableLiveData()
+    private val exceptionHomeStatus: MutableLiveData<Exception?> = MutableLiveData()
 
     override fun inject(untamedAfricaComponent: UntamedAfricaComponent) {
         untamedAfricaComponent.inject(this)
@@ -20,21 +26,38 @@ class HomeViewModel : ViewModel(), UntamedAfricaComponent.Injectable {
 
     fun retrieveListOfFilterItems() {
         filterRepository.getListOfFiltersFromFirebase(object : FilterRepository.RepositoryCallback {
-            override fun onSuccess(response: ArrayList<Filter>) {
-                filterItemListData.value = response
+            override fun onSuccess(response: ArrayList<FilterModel>) {
+                filterModelItemListData.value = response
             }
 
             override fun onError(exception: Exception?) {
-                exceptionStatus?.value = exception
+                exceptionStatus.value = exception
             }
 
         })
     }
 
-    fun getFilterItemMutableList(): MutableLiveData<List<Filter>> {
-        return filterItemListData
+    fun retrieveListOfHomeItems(homeItemName: String) {
+        homeRepository.getListOfHomeItemsFromFirebase(homeItemName, object : HomeRepository.RepositoryCallback {
+
+            override fun onSuccess(response: ArrayList<HomeModel>) {
+                homeItemListData.value = response
+            }
+
+            override fun onError(exception: Exception?) {
+                exceptionHomeStatus.value = exception
+            }
+
+        })
     }
 
+    fun getFilterItemMutableList(): MutableLiveData<List<FilterModel>> {
+        return filterModelItemListData
+    }
+
+    fun getHomeItemMutableList(): MutableLiveData<ArrayList<HomeModel>> {
+        return homeItemListData
+    }
     fun getExceptionMessage(): MutableLiveData<Exception?> {
         return exceptionStatus
     }

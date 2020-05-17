@@ -1,12 +1,12 @@
 package com.velaphi.untamed.repository.contracts
 
-import com.velaphi.untamed.features.home.Filter
+import com.velaphi.untamed.features.home.FilterModel
 import java.lang.Exception
 
 interface FilterRepository {
 
     interface RepositoryCallback {
-        fun onSuccess(response: ArrayList<Filter>)
+        fun onSuccess(response: ArrayList<FilterModel>)
         fun onError(exception: Exception?)
     }
 

@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 
 @IgnoreExtraProperties
 @Parcelize
-data class Filter(val name: String? = null,
-                  val key: String? = null) : Parcelable
+data class FilterModel(val name: String? = null,
+                       val key: String? = null) : Parcelable

@@ -47,4 +47,5 @@
     <string name="title_favourites">Favourites</string>
     <string name="title_more">More</string>
     <string name="title_safaris">Safaris</string>
+    <string name="filter_image">Filter Image</string>
 </resources>
