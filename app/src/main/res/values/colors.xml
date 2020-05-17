@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#63744D</color>
-    <color name="colorPrimaryDark">#36441F</color>
-    <color name="colorAccent">#A5B157</color>
-    <color name="cardBackground">#D4D5CE</color>
-    <color name="primaryTextColor">#B3B5AA</color>
-    <color name="grey">#E6E3E3</color>
-    <color name="selected_chip">#999797</color>
+    <color name="colorPrimary">#c2bdbc</color>
+    <color name="colorPrimaryDark">#8d8581</color>
+    <color name="colorAccent">#33aaa5a2</color>
+    <color name="cardBackground">#DBD5DC</color>
     <color name="black_overlay">#66000000</color>
-    <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="shimmer">#DDDDDD</color>
+    <color name="white">#FFFFFF</color>
 </resources>

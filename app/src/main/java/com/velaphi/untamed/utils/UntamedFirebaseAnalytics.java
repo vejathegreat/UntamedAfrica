@@ -20,11 +20,6 @@ public class UntamedFirebaseAnalytics implements Analytics {
     }
 
     @Override
-    public void trackOpenHome() {
-        firebaseAnalytics.logEvent(FirebaseAnalyticsEnums.VIEW_HOME_SCREEN.label, null);
-    }
-
-    @Override
     public void trackOpenLicences() {
         firebaseAnalytics.logEvent(FirebaseAnalyticsEnums.VIEW_CATEGORY_SCREEN.label, null);
     }
@@ -63,7 +58,6 @@ public class UntamedFirebaseAnalytics implements Analytics {
 
     public enum FirebaseAnalyticsEnums {
         VIEW_CATEGORY_SCREEN("view_categories"),
-        VIEW_HOME_SCREEN("view_home"),
         VIEW_LICENCE_SCREEN("view_categories"),
         VIEW_SAFARI_SCREEN("view_categories"),
         VIEW_CATEGORY_NAME("Category_name"),

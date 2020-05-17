@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -87,16 +86,14 @@ public class CategoriesFragment extends Fragment {
 
     private void setupToolbar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        TextView toolBarTitleTextView = view.findViewById(R.id.toolbar_title);
-        toolBarTitleTextView.setText(R.string.categories_screen_title);
-//        toolbar.setTitle(R.string.categories_screen_title);
-//        toolbar.setNavigationIcon(R.drawable.ic_nav_open);
-//        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-//        toolbar.setNavigationOnClickListener(v -> {
-//            DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawer_layout);
-//            drawerLayout.openDrawer(GravityCompat.START);
-//
-//        });
+        toolbar.setTitle(R.string.categories_screen_title);
+        toolbar.setNavigationIcon(R.drawable.ic_nav_open);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> {
+            DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+
+        });
     }
 
     private void setupViewModel() {

@@ -6,7 +6,6 @@ import com.velaphi.untamed.features.licenses.LicenceModel;
 public interface Analytics {
 
     void trackOpenCategories();
-    void trackOpenHome();
     void trackOpenLicences();
     void trackOpenSafaris();
 
