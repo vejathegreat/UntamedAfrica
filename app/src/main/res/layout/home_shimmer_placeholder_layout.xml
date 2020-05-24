@@ -6,20 +6,7 @@
     android:orientation="vertical">
 
     <View
-        android:id="@+id/home_image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_image_height"
         android:background="@color/shimmer"/>
-    <View
-        android:layout_width="100dp"
-        android:layout_height="@dimen/placeholderTextHeight"
-        android:layout_margin="@dimen/general_margin"
-        android:layout_gravity="center"
-        android:background="@color/shimmer" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/placeholderTextHeight"
-        android:layout_marginTop="5dp"
-        android:layout_margin="@dimen/general_margin"
-        android:background="@color/shimmer" />
 </LinearLayout>
