@@ -10,6 +10,7 @@ import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.database.AnimalsDao;
 import com.velaphi.untamed.features.database.AnimalsDatabase;
 import com.velaphi.untamed.repository.contracts.AboutUsRepository;
+import com.velaphi.untamed.repository.contracts.AllAnimalsRepository;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.AnimalRepository;
 import com.velaphi.untamed.repository.contracts.CategoryRepository;
@@ -20,6 +21,7 @@ import com.velaphi.untamed.repository.contracts.HomeRepository;
 import com.velaphi.untamed.repository.contracts.LicensesRepository;
 import com.velaphi.untamed.repository.contracts.SafarisRepository;
 import com.velaphi.untamed.repository.implementation.AboutUsRepositoryImpl;
+import com.velaphi.untamed.repository.implementation.AllAnimalsRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.AnimalListRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.AnimalRepositoryImpl;
 import com.velaphi.untamed.repository.implementation.CategoryRepositoryImpl;
@@ -103,6 +105,12 @@ public class UntamedAfricaModule {
     @Singleton
     FilterRepository provideFilterRepository(FirebaseFirestore firebaseFirestore) {
         return new FilterRepositoryImpl(firebaseFirestore);
+    }
+
+    @Provides
+    @Singleton
+    AllAnimalsRepository provideAllAnimalsRepository(FirebaseFirestore firebaseFirestore) {
+        return new AllAnimalsRepositoryImpl(firebaseFirestore);
     }
 
     @Provides

@@ -20,8 +20,8 @@ class HomeViewModel : ViewModel(), UntamedAfricaComponent.Injectable {
     private val exceptionStatus: MutableLiveData<Exception?> = MutableLiveData()
     private val exceptionHomeStatus: MutableLiveData<Exception?> = MutableLiveData()
 
-    override fun inject(untamedAfricaComponent: UntamedAfricaComponent) {
-        untamedAfricaComponent.inject(this)
+    override fun inject(untamedAfricaComponent: UntamedAfricaComponent?) {
+        untamedAfricaComponent?.inject(this)
     }
 
     fun retrieveListOfFilterItems() {

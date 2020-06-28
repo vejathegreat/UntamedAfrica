@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.velaphi.untamed.R;
 import com.velaphi.untamed.UntamedAfricaApp;
 import com.velaphi.untamed.features.about.AboutUsFragment;
+import com.velaphi.untamed.features.all_animals.AllAnimalsFragment;
 import com.velaphi.untamed.features.categories.CategoriesFragment;
 import com.velaphi.untamed.features.favorites.FavoriteFragment;
 import com.velaphi.untamed.features.getInvolved.GetInvolvedFragment;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity
                 .get(NavigationDrawerViewModel.class);
 
         navigationViewModelNavigation.categoryListScreenTrigger.observe(this, (aVoid -> openScreen(new CategoriesFragment())));
+        navigationViewModelNavigation.animalsScreenTrigger.observe(this, (aVoid -> openScreen(new AllAnimalsFragment())));
         navigationViewModelNavigation.licenceListScreenTrigger.observe(this, (aVoid -> openScreen(new OpenSourceLicensesFragment())));
         navigationViewModelNavigation.safarisScreenTrigger.observe(this, (aVoid -> openScreen(new SafarisFragment())));
         navigationViewModelNavigation.getInvolvedScreenTrigger.observe(this, (aVoid -> openScreen(new GetInvolvedFragment())));
@@ -75,7 +77,9 @@ public class MainActivity extends AppCompatActivity
             navigationViewModelNavigation.openCategories();
         } else if (id == R.id.nav_favorites) {
             navigationViewModelNavigation.openFavorites();
-        } else if (id == R.id.nav_announcement) {
+        }  else if (id == R.id.navigation_animals) {
+            navigationViewModelNavigation.openFavorites();
+        }  else if (id == R.id.nav_announcement) {
             //Announcements Micro-service in progress
         } else if (id == R.id.nav_news) {
             //News Micro-service in progress

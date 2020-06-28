@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.velaphi.untamed.R
 import com.velaphi.untamed.UntamedAfricaApp
+import com.velaphi.untamed.features.all_animals.AllAnimalsFragment
 import com.velaphi.untamed.features.favorites.FavoriteFragment
 import com.velaphi.untamed.features.home.HomeFragment
 import com.velaphi.untamed.injection.UntamedFactory
@@ -39,10 +40,15 @@ class MainBottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
         val application = this.application as UntamedAfricaApp
         navigationViewModelNavigation = ViewModelProviders.of(this, UntamedFactory(application))
                 .get(NavigationDrawerViewModel::class.java)
-        navigationViewModelNavigation.homeScreenTrigger.observe(this, Observer {
-            openScreen(HomeFragment())})
 
-        navigationViewModelNavigation.favoritesScreenTrigger.observe(this, Observer { openScreen(FavoriteFragment())})
+        navigationViewModelNavigation.homeScreenTrigger.observe(this, Observer {
+            openScreen(HomeFragment())
+        })
+
+        navigationViewModelNavigation.animalsScreenTrigger.observe(this, Observer {
+            openScreen(AllAnimalsFragment())
+        })
+        navigationViewModelNavigation.favoritesScreenTrigger.observe(this, Observer { openScreen(FavoriteFragment()) })
     }
 
     private fun openScreen(fragment: Fragment?) {
@@ -58,11 +64,11 @@ class MainBottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
                 return true
             }
             R.id.navigation_animals -> {
-
+                navigationViewModelNavigation.openAnimals()
                 return true
             }
             R.id.navigation_favourites -> {
-                navigationViewModelNavigation.openFavorites()
+//                navigationViewModelNavigation.openFavorites()
                 return true
             }
             R.id.navigation_safaris -> {

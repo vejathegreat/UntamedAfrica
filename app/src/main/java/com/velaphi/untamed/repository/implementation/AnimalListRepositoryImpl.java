@@ -5,7 +5,7 @@ import android.util.Log;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.old_animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 
 import java.util.ArrayList;

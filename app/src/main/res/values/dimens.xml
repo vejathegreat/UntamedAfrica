@@ -17,12 +17,27 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="padding_10">10dp</dimen>
 
     <dimen name="title">18sp</dimen>
+    <dimen name="title_large">24sp</dimen>
     <dimen name="sub_text">14sp</dimen>
 
-    <dimen name="home_image_height">180dp</dimen>
+    <dimen name="home_image_height">220dp</dimen>
     <dimen name="home_image_half_height">90dp</dimen>
     <dimen name="general_margin">4dp</dimen>
     <dimen name="general_half_margin">2dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
+    <dimen name="standard_margin">8dp</dimen>
+    <!--
+    Because the window insets on round devices are larger than 15dp, this padding only applies
+    to square screens.
+    -->
+    <dimen name="box_inset_layout_padding">0dp</dimen>
+
+    <!--
+    This padding applies to both square and round screens. The total padding between the buttons
+    and the window insets is box_inset_layout_padding (above variable) on square screens and
+    inner_frame_layout_padding (below variable) on round screens.
+    -->
+    <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

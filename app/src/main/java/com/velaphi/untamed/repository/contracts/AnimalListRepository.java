@@ -1,6 +1,6 @@
 package com.velaphi.untamed.repository.contracts;
 
-import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.old_animalDetails.models.AnimalDetailsModel;
 
 import java.util.List;
 

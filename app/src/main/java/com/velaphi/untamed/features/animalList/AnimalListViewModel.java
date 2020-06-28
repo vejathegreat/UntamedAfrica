@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.old_animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.injection.UntamedAfricaComponent;
 import com.velaphi.untamed.repository.contracts.AnimalListRepository;
 import com.velaphi.untamed.repository.contracts.FavouritesRepository;

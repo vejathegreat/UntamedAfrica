@@ -20,7 +20,9 @@
 
     <style name="ToolbarTitleStyle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/puritan</item>
-        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -35,5 +37,35 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="title_style" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/puritan</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/puritan</item>
+    </style>
+
+    <style name="subtitle_style" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/puritan</item>
+        <item name="android:fontFamily">@font/puritan</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="body_style" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/puritan</item>
+        <item name="android:fontFamily">@font/puritan</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="caption_style" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/puritan</item>
+        <item name="android:fontFamily">@font/puritan</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
 </resources>

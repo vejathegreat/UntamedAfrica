@@ -3,7 +3,7 @@ package com.velaphi.untamed.repository.implementation;
 
 import androidx.lifecycle.LiveData;
 
-import com.velaphi.untamed.features.animalDetails.models.AnimalDetailsModel;
+import com.velaphi.untamed.features.old_animalDetails.models.AnimalDetailsModel;
 import com.velaphi.untamed.features.database.AnimalsDatabase;
 import com.velaphi.untamed.repository.contracts.AnimalRepository;
 

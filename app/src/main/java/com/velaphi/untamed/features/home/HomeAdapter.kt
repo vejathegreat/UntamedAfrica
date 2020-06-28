@@ -47,7 +47,7 @@ class HomeAdapter( ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
         GlideApp.with(holder.itemView.context)
                 .load(AppUtil.getImageFromStorage(homeItem?.image))
-                .placeholder(R.color.colorAccent)
+                .placeholder(R.color.shimmer)
                 .thumbnail(0.1f)
                 .apply(options)
                 .centerCrop()
@@ -55,8 +55,8 @@ class HomeAdapter( ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     }
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.findViewById(R.id.home_image)
-        val name: TextView = itemView.findViewById(R.id.home_name_textView)
-        val descriptions: TextView = itemView.findViewById(R.id.home_description)
+        val image: ImageView = itemView.findViewById(R.id.image)
+        val name: TextView = itemView.findViewById(R.id.name_textView)
+        val descriptions: TextView = itemView.findViewById(R.id.description)
     }
 }

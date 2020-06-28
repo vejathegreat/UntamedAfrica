@@ -87,8 +87,8 @@ public class CategoriesFragment extends Fragment {
 
     private void setupToolbar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        TextView toolBarTitleTextView = view.findViewById(R.id.toolbar_title);
-        toolBarTitleTextView.setText(R.string.categories_screen_title);
+//        TextView toolBarTitleTextView = view.findViewById(R.id.toolbar_title);toolbar_titlez
+//        toolBarTitleTextView.setText(R.string.categories_screen_title);
 //        toolbar.setTitle(R.string.categories_screen_title);
 //        toolbar.setNavigationIcon(R.drawable.ic_nav_open);
 //        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);

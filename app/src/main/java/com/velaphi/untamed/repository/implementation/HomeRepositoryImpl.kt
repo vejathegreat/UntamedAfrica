@@ -15,7 +15,6 @@ class HomeRepositoryImpl(val firebaseFirestore: FirebaseFirestore) : HomeReposit
                 .orderBy(LEVEL, Query.Direction.ASCENDING)
                 .get().addOnCompleteListener { task: Task<QuerySnapshot> ->
                     if (task.isSuccessful) {
-//                        val list: ArrayList<HomeModel?> = ArrayList()
                         val list: ArrayList<HomeModel> = ArrayList()
                         for (document in task.result!!) {
                             val homeModel = document.toObject(HomeModel::class.java)

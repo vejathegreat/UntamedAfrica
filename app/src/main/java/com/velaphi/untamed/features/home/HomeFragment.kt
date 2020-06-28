@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,10 +39,16 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         setupViews(view)
+        setupToolbar(view)
         setupViewModel()
         homeViewModel.retrieveListOfFilterItems()
         homeViewModel.retrieveListOfHomeItems(DEFAULT_FILTER)
         return view
+    }
+
+    private fun setupToolbar(view: View?) {
+        val toolbar: Toolbar? = view?.findViewById(R.id.toolbar)
+        toolbar?.title = activity?.getString(R.string.default_title)
     }
 
     private fun setupViews(view: View) {
@@ -63,7 +70,7 @@ class HomeFragment : Fragment() {
 
     private fun setupViewModel() {
         val untamedComponentFactory = UntamedFactory(activity?.application as UntamedAfricaApp)
-        homeViewModel = ViewModelProviders.of(this, untamedComponentFactory).get<HomeViewModel>(HomeViewModel::class.java)
+        homeViewModel = ViewModelProviders.of(this, untamedComponentFactory).get(HomeViewModel::class.java)
         observeListOfFilters()
         observeListOfHomeItems()
         observeExceptionMessage()
